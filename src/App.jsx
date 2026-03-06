@@ -52,6 +52,19 @@ function useIsMobile() {
   return mobile;
 }
 
+function useIsSmallScreen() {
+  const [small, setSmall] = useState(() => typeof window !== "undefined" && window.innerWidth < 480);
+  useEffect(() => {
+    const check = () => setSmall(window.innerWidth < 480);
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+  return small;
+}
+
+const PAGE_PADDING_X = "clamp(16px, 5vw, 64px)";
+const SECTION_PADDING_Y = "clamp(60px, 10vh, 120px)";
+
 const scrollTo = (id) => document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
 
 /* ─── Grid Background ────────────────────────────────────────────────────── */
@@ -90,21 +103,21 @@ function SectionTitle({ children }) {
   );
 }
 
-function ClipBtn({ children, onClick }) {
+function ClipBtn({ children, onClick, small }) {
   const [hov, setHov] = useState(false);
   return (
     <button onClick={onClick} onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
       style={{
         background: hov ? "#fff" : "#00ffb4", border: "none", color: "#000",
-        padding: "15px 32px", fontFamily: "'Space Mono',monospace",
-        fontWeight: 700, fontSize: 12, letterSpacing: 2, textTransform: "uppercase",
+        padding: small ? "12px 24px" : "15px 32px", fontFamily: "'Space Mono',monospace",
+        fontWeight: 700, fontSize: small ? 11 : 12, letterSpacing: 2, textTransform: "uppercase",
         transition: "background 0.2s", cursor: "pointer",
         clipPath: "polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px))",
       }}>{children}</button>
   );
 }
 
-function GhostBtn({ children, onClick }) {
+function GhostBtn({ children, onClick, small }) {
   const [hov, setHov] = useState(false);
   return (
     <button onClick={onClick} onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
@@ -112,8 +125,8 @@ function GhostBtn({ children, onClick }) {
         background: "transparent", cursor: "pointer",
         border: `1px solid ${hov ? "#00ffb4" : "rgba(255,255,255,0.2)"}`,
         color: hov ? "#00ffb4" : "rgba(255,255,255,0.65)",
-        padding: "15px 32px", fontFamily: "'Space Mono',monospace",
-        fontSize: 12, letterSpacing: 2, textTransform: "uppercase", transition: "all 0.2s",
+        padding: small ? "12px 24px" : "15px 32px", fontFamily: "'Space Mono',monospace",
+        fontSize: small ? 11 : 12, letterSpacing: 2, textTransform: "uppercase", transition: "all 0.2s",
       }}>{children}</button>
   );
 }
@@ -127,18 +140,21 @@ function Navbar({ scrollY }) {
   return (
     <nav style={{
       position: "fixed", top: 0, left: 0, right: 0, zIndex: 100,
-      padding: stuck ? "14px 24px" : "22px 24px",
+      paddingTop: stuck ? 14 : 22,
+      paddingBottom: stuck ? 14 : 22,
+      paddingLeft: PAGE_PADDING_X,
+      paddingRight: PAGE_PADDING_X,
       background: stuck || menuOpen ? "rgba(5,8,14,0.96)" : "transparent",
       backdropFilter: stuck || menuOpen ? "blur(14px)" : "none",
       borderBottom: stuck ? "1px solid rgba(0,255,180,0.1)" : "none",
       display: "flex", alignItems: "center", justifyContent: "space-between",
       transition: "padding 0.3s, background 0.3s",
     }}>
-      <div style={{ display: "flex", alignItems: "center", gap: 10, cursor: "pointer" }} onClick={() => scrollTo("hero")}>
+      <div style={{ display: "flex", alignItems: "center", gap: 10, cursor: "pointer", minWidth: 0 }} onClick={() => scrollTo("hero")}>
         <div style={{ width: 28, height: 28, border: "2px solid #00ffb4", transform: "rotate(45deg)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
           <div style={{ width: 9, height: 9, background: "#00ffb4", transform: "rotate(-45deg)" }} />
         </div>
-        <span style={{ fontFamily: "'Orbitron',monospace", fontWeight: 700, fontSize: 18, color: "#fff", letterSpacing: 2 }}>TREFORGE</span>
+        <span style={{ fontFamily: "'Orbitron',monospace", fontWeight: 700, fontSize: "clamp(14px, 3.5vw, 18px)", color: "#fff", letterSpacing: 2 }}>TREFORGE</span>
       </div>
 
       {!isMobile && (
@@ -165,7 +181,8 @@ function Navbar({ scrollY }) {
         <div style={{
           position: "absolute", top: "100%", left: 0, right: 0,
           background: "rgba(5,8,14,0.98)", borderBottom: "1px solid rgba(0,255,180,0.15)",
-          padding: "24px", display: "flex", flexDirection: "column", gap: 20,
+          padding: "24px 16px", paddingLeft: PAGE_PADDING_X, paddingRight: PAGE_PADDING_X,
+          display: "flex", flexDirection: "column", gap: 20,
         }}>
           {NAV_LINKS.map(l => (
             <button key={l} onClick={() => { scrollTo(l.toLowerCase()); setMenuOpen(false); }}
@@ -218,6 +235,7 @@ function Hero() {
   const [done, setDone] = useState(false);
   const [, forceUpdate] = useState(0);
   const isMobile = useIsMobile();
+  const isSmall = useIsSmallScreen();
 
   useEffect(() => {
     const duration = 1800;
@@ -246,7 +264,10 @@ function Hero() {
     <section id="hero" style={{
       minHeight: "100vh", display: "flex", flexDirection: "column",
       justifyContent: "center", alignItems: "flex-start",
-      padding: isMobile ? "100px 24px 60px" : "0 64px",
+      paddingTop: isMobile ? "clamp(80px, 12vh, 100px)" : 0,
+      paddingBottom: isMobile ? 60 : 0,
+      paddingLeft: PAGE_PADDING_X,
+      paddingRight: PAGE_PADDING_X,
       position: "relative", overflow: "hidden",
     }}>
       {!isMobile && (
@@ -282,8 +303,8 @@ function Hero() {
         </p>
 
         <div style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
-          <ClipBtn onClick={() => scrollTo("contact")}>Start Your MVP</ClipBtn>
-          <GhostBtn onClick={() => scrollTo("services")}>Our Services</GhostBtn>
+          <ClipBtn onClick={() => scrollTo("contact")} small={isSmall}>Start Your MVP</ClipBtn>
+          <GhostBtn onClick={() => scrollTo("services")} small={isSmall}>Our Services</GhostBtn>
         </div>
 
         <div style={{ marginTop: isMobile ? 56 : 80, display: "flex", gap: isMobile ? 32 : 56, flexWrap: "wrap" }}>
@@ -303,16 +324,17 @@ function Hero() {
 function Services() {
   const [active, setActive] = useState(null);
   const isMobile = useIsMobile();
+  const isSmall = useIsSmallScreen();
   return (
-    <section id="services" style={{ padding: isMobile ? "80px 24px" : "120px 64px" }}>
+    <section id="services" style={{ padding: `${SECTION_PADDING_Y} ${PAGE_PADDING_X}` }}>
       <SectionLabel>What We Do</SectionLabel>
       <SectionTitle>SERVICES</SectionTitle>
-      <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(auto-fit,minmax(280px,1fr))", gap: 2, marginTop: 56 }}>
+      <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(auto-fit,minmax(280px,1fr))", gap: 2, marginTop: "clamp(32px, 6vw, 56px)" }}>
         {SERVICES.map((s, i) => (
           <div key={i} data-hover
             onMouseEnter={() => setActive(i)} onMouseLeave={() => setActive(null)}
             style={{
-              padding: "40px 36px",
+              padding: isSmall ? "28px 24px" : "40px 36px",
               background: active === i ? "rgba(0,255,180,0.04)" : "rgba(255,255,255,0.02)",
               border: `1px solid ${active === i ? "rgba(0,255,180,0.28)" : "rgba(255,255,255,0.06)"}`,
               transition: "all 0.25s", position: "relative", overflow: "hidden",
@@ -333,8 +355,8 @@ function Services() {
 function About() {
   const isMobile = useIsMobile();
   return (
-    <section id="about" style={{ padding: isMobile ? "80px 24px" : "120px 64px" }}>
-      <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? 48 : 80, alignItems: "start" }}>
+    <section id="about" style={{ padding: `${SECTION_PADDING_Y} ${PAGE_PADDING_X}` }}>
+      <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? "clamp(32px, 6vw, 48px)" : 80, alignItems: "start" }}>
         <div>
           <SectionLabel>How We Work</SectionLabel>
           <h2 style={{ fontFamily: "'Orbitron',monospace", fontSize: isMobile ? "clamp(26px,7vw,40px)" : "clamp(28px,3.5vw,48px)", fontWeight: 900, color: "#fff", margin: "0 0 24px" }}>WE THINK<br />BEFORE WE BUILD</h2>
@@ -355,10 +377,11 @@ function About() {
 
 function ProcessCard({ num, title, body }) {
   const [hov, setHov] = useState(false);
+  const isSmall = useIsSmallScreen();
   return (
     <div onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
       style={{
-        display: "flex", gap: 22, padding: "26px 28px",
+        display: "flex", gap: isSmall ? 16 : 22, padding: isSmall ? "20px 20px" : "26px 28px",
         background: hov ? "rgba(0,255,180,0.04)" : "rgba(255,255,255,0.02)",
         border: `1px solid ${hov ? "rgba(0,255,180,0.2)" : "rgba(255,255,255,0.06)"}`,
         transition: "all 0.2s",
@@ -376,21 +399,21 @@ function ProcessCard({ num, title, body }) {
 function Clients() {
   const isMobile = useIsMobile();
   return (
-    <section id="clients" style={{ padding: isMobile ? "80px 24px" : "120px 64px" }}>
+    <section id="clients" style={{ padding: `${SECTION_PADDING_Y} ${PAGE_PADDING_X}` }}>
       <SectionLabel>Who We've Helped</SectionLabel>
       <SectionTitle>CLIENTS</SectionTitle>
-      <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr 1fr" : "repeat(4,1fr)", gap: 2, marginTop: 56 }}>
+      <div style={{ display: "grid", gridTemplateColumns: isMobile ? "repeat(auto-fit, minmax(200px, 1fr))" : "repeat(4,1fr)", gap: 2, marginTop: "clamp(32px, 6vw, 56px)" }}>
         {CLIENTS.map((c, i) => <ClientCard key={i} {...c} />)}
       </div>
       <div style={{
-        marginTop: 64, padding: isMobile ? "40px 28px" : "60px 52px",
+        marginTop: "clamp(40px, 8vw, 64px)", padding: "clamp(32px, 5vw, 60px) clamp(24px, 4vw, 52px)",
         background: "linear-gradient(135deg,rgba(0,255,180,0.06),rgba(0,255,180,0.02))",
         border: "1px solid rgba(0,255,180,0.14)",
         display: "flex", alignItems: "center", justifyContent: "space-between",
         flexWrap: "wrap", gap: 28,
       }}>
-        <div>
-          <div style={{ fontFamily: "'Orbitron',monospace", fontSize: isMobile ? "clamp(20px,5vw,30px)" : "clamp(22px,3vw,36px)", fontWeight: 900, color: "#fff", marginBottom: 10 }}>READY TO BUILD<br />SOMETHING REAL?</div>
+        <div style={{ minWidth: 0 }}>
+          <div style={{ fontFamily: "'Orbitron',monospace", fontSize: "clamp(18px, 4vw, 36px)", fontWeight: 900, color: "#fff", marginBottom: 10 }}>READY TO BUILD<br />SOMETHING REAL?</div>
           <div style={{ fontFamily: "'Space Mono',monospace", fontSize: 13, color: "rgba(255,255,255,0.45)" }}>Let's talk about your idea. No fluff, just solutions.</div>
         </div>
         <ClipBtn onClick={() => scrollTo("contact")}>Get In Touch</ClipBtn>
@@ -401,11 +424,12 @@ function Clients() {
 
 function ClientCard({ name, url, tag }) {
   const [hov, setHov] = useState(false);
+  const isSmall = useIsSmallScreen();
   return (
     <a href={url} target="_blank" rel="noopener noreferrer" data-hover
       onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
       style={{
-        display: "block", padding: "36px 28px",
+        display: "block", padding: isSmall ? "28px 20px" : "36px 28px",
         background: hov ? "rgba(0,255,180,0.05)" : "rgba(255,255,255,0.02)",
         border: `1px solid ${hov ? "rgba(0,255,180,0.28)" : "rgba(255,255,255,0.06)"}`,
         textDecoration: "none", transition: "all 0.25s", position: "relative",
@@ -424,6 +448,7 @@ function Contact() {
   const [sent, setSent] = useState(false);
   const [error, setError] = useState("");
   const isMobile = useIsMobile();
+  const isSmall = useIsSmallScreen();
 
   const handle = (k) => (e) => setForm(f => ({ ...f, [k]: e.target.value }));
   const submit = () => {
@@ -438,8 +463,8 @@ function Contact() {
   };
 
   return (
-    <section id="contact" style={{ padding: isMobile ? "80px 24px 60px" : "120px 64px" }}>
-      <div style={{ maxWidth: 680, margin: "0 auto" }}>
+    <section id="contact" style={{ padding: `${SECTION_PADDING_Y} ${PAGE_PADDING_X} clamp(48px, 8vw, 60px)` }}>
+      <div style={{ maxWidth: 680, margin: "0 auto", width: "100%" }}>
         <div style={{ marginBottom: 52, textAlign: "center" }}>
           <SectionLabel>Start a Project</SectionLabel>
           <h2 style={{ fontFamily: "'Orbitron',monospace", fontSize: isMobile ? "clamp(28px,8vw,48px)" : "clamp(32px,5vw,56px)", fontWeight: 900, color: "#fff", margin: "0 0 14px" }}>LET'S TALK</h2>
@@ -447,9 +472,9 @@ function Contact() {
         </div>
 
         {sent ? (
-          <div style={{ textAlign: "center", padding: "72px 40px", border: "1px solid rgba(0,255,180,0.28)", background: "rgba(0,255,180,0.04)" }}>
+          <div style={{ textAlign: "center", padding: "clamp(48px, 10vw, 72px) clamp(24px, 5vw, 40px)", border: "1px solid rgba(0,255,180,0.28)", background: "rgba(0,255,180,0.04)" }}>
             <div style={{ fontSize: 36, marginBottom: 18, color: "#00ffb4" }}>⬡</div>
-            <div style={{ fontFamily: "'Orbitron',monospace", fontSize: 20, color: "#00ffb4", marginBottom: 12 }}>MESSAGE RECEIVED</div>
+            <div style={{ fontFamily: "'Orbitron',monospace", fontSize: "clamp(16px, 4vw, 20px)", color: "#00ffb4", marginBottom: 12 }}>MESSAGE RECEIVED</div>
             <div style={{ fontFamily: "'Space Mono',monospace", fontSize: 13, color: "rgba(255,255,255,0.45)" }}>We'll be in touch within 24 hours.</div>
           </div>
         ) : (
@@ -467,7 +492,7 @@ function Contact() {
               onFocus={e => e.target.style.borderColor = "rgba(0,255,180,0.5)"}
               onBlur={e => e.target.style.borderColor = "rgba(255,255,255,0.1)"} />
             {error && <div style={{ fontFamily: "'Space Mono',monospace", fontSize: 11, color: "#ff4d6d", letterSpacing: 1, padding: "4px 2px" }}>{error}</div>}
-            <ClipBtn onClick={submit}>SEND MESSAGE →</ClipBtn>
+            <ClipBtn onClick={submit} small={isSmall}>SEND MESSAGE →</ClipBtn>
           </div>
         )}
       </div>
@@ -479,8 +504,15 @@ function Contact() {
 function Footer() {
   const isMobile = useIsMobile();
   return (
-    <footer style={{ padding: isMobile ? "32px 24px" : "40px 64px", borderTop: "1px solid rgba(255,255,255,0.06)", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 16 }}>
-      <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+    <footer style={{
+      padding: `clamp(24px, 4vw, 40px) ${PAGE_PADDING_X}`,
+      borderTop: "1px solid rgba(255,255,255,0.06)",
+      display: "flex", alignItems: "center", justifyContent: "space-between",
+      flexWrap: "wrap", gap: 16,
+      flexDirection: isMobile ? "column" : "row",
+      textAlign: isMobile ? "center" : "left",
+    }}>
+      <div style={{ display: "flex", alignItems: "center", gap: 10, justifyContent: isMobile ? "center" : "flex-start" }}>
         <div style={{ width: 22, height: 22, border: "1.5px solid rgba(0,255,180,0.5)", transform: "rotate(45deg)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
           <div style={{ width: 6, height: 6, background: "rgba(0,255,180,0.6)", transform: "rotate(-45deg)" }} />
         </div>
@@ -494,21 +526,23 @@ function Footer() {
 /* ─── Root ───────────────────────────────────────────────────────────────── */
 export default function App() {
   const scrollY = useScrollY();
-  const isMobile = useIsMobile();
 
   return (
     <>
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Mono:wght@400;700&display=swap');
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-        html { scroll-behavior: smooth; }
-        body { background: #05080e; color: #fff; overflow-x: hidden; }
+        html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+        body { background: #05080e; color: #fff; overflow-x: hidden; min-width: 280px; }
         ::-webkit-scrollbar { width: 4px; }
         ::-webkit-scrollbar-track { background: #05080e; }
         ::-webkit-scrollbar-thumb { background: rgba(0,255,180,0.3); border-radius: 2px; }
         @keyframes spin { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
         ::placeholder { color: rgba(255,255,255,0.2); }
         input, textarea { color-scheme: dark; }
+        @media (max-width: 480px) {
+          button { min-height: 44px; }
+        }
       `}</style>
 
       <GridBackground />
