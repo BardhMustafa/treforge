@@ -5,7 +5,12 @@ export function ServiceCard({ service, active, onMouseEnter, onMouseLeave, isSma
   return (
     <Link
       to={`/services/${slug}`}
-      style={{ textDecoration: "none", color: "inherit" }}
+      style={{
+        textDecoration: "none",
+        color: "inherit",
+        display: "flex",
+        flexDirection: "column",
+      }}
       data-hover
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
@@ -18,7 +23,9 @@ export function ServiceCard({ service, active, onMouseEnter, onMouseLeave, isSma
           transition: "all 0.25s",
           position: "relative",
           overflow: "hidden",
-          display: "block",
+          flex: 1,
+          display: "flex",
+          flexDirection: "column",
         }}
       >
         <div
@@ -71,7 +78,8 @@ export function ServiceCard({ service, active, onMouseEnter, onMouseLeave, isSma
         </p>
         <div
           style={{
-            marginTop: 28,
+            marginTop: "auto",
+            paddingTop: 28,
             fontFamily: "'Space Mono',monospace",
             fontSize: 10,
             color: "#00ffb4",

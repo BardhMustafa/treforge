@@ -92,7 +92,7 @@ export function ClientCard({ name, url, tag, slug, screenshot }) {
           zIndex: 2,
         }}
       />
-      <div style={{ padding: isSmall ? "20px" : "28px" }}>
+      <div style={{ padding: isSmall ? "20px" : "28px", flex: 1, display: "flex", flexDirection: "column" }}>
         <div
           style={{
             fontFamily: "'Space Mono',monospace",
@@ -120,6 +120,8 @@ export function ClientCard({ name, url, tag, slug, screenshot }) {
         </div>
         <div
           style={{
+            marginTop: "auto",
+            paddingTop: 16,
             fontFamily: "'Space Mono',monospace",
             fontSize: 10,
             color: hov ? "#00ffb4" : "rgba(255,255,255,0.35)",
