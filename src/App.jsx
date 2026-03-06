@@ -116,46 +116,6 @@ function GridBackground() {
   );
 }
 
-/* ─── Custom Cursor (desktop only) ──────────────────────────────────────── */
-function Cursor() {
-  const dotRef = useRef(null);
-  const [hov, setHov] = useState(false);
-  useEffect(() => {
-    const move = (e) => {
-      if (dotRef.current) {
-        dotRef.current.style.left = e.clientX + 'px';
-        dotRef.current.style.top = e.clientY + 'px';
-      }
-    };
-    const over = (e) => setHov(!!e.target.closest('a,button,[data-hover]'));
-    window.addEventListener('mousemove', move, { passive: true });
-    window.addEventListener('mouseover', over, { passive: true });
-    return () => {
-      window.removeEventListener('mousemove', move);
-      window.removeEventListener('mouseover', over);
-    };
-  }, []);
-  return (
-    <div
-      ref={dotRef}
-      style={{
-        position: 'fixed',
-        zIndex: 9999,
-        pointerEvents: 'none',
-        transform: 'translate(-50%,-50%)',
-        transition: 'width 0.15s, height 0.15s, background 0.15s, border 0.15s',
-        width: hov ? 36 : 10,
-        height: hov ? 36 : 10,
-        borderRadius: '50%',
-        background: hov ? 'rgba(0,255,180,0.12)' : 'rgba(0,255,180,0.9)',
-        border: hov ? '1.5px solid #00ffb4' : 'none',
-        mixBlendMode: 'screen',
-        willChange: 'left, top',
-      }}
-    />
-  );
-}
-
 /* ─── Shared UI ──────────────────────────────────────────────────────────── */
 function SectionLabel({ children }) {
   return (
@@ -1320,7 +1280,6 @@ export default function App() {
         input, textarea { color-scheme: dark; }
       `}</style>
 
-      {!isMobile && <Cursor />}
       <GridBackground />
       <Navbar scrollY={scrollY} />
       <main style={{ position: 'relative', zIndex: 1 }}>
