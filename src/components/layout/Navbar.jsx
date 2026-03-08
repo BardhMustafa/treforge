@@ -1,13 +1,14 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useIsMobile } from "../../hooks";
-import { PAGE_PADDING_X, scrollTo } from "../../constants/layout";
+import { PAGE_PADDING_X, NAV_LINKS, scrollTo } from "../../constants/layout";
 import { NavLinks } from "./NavBtn";
 import { TalkBtn } from "./TalkBtn";
 
 export function Navbar({ scrollY }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const isMobile = useIsMobile();
+  const navigate = useNavigate();
   const stuck = scrollY > 40;
 
   return (
@@ -136,17 +137,20 @@ export function Navbar({ scrollY }) {
             gap: 20,
           }}
         >
-          {[
-            { label: "Services", path: "/#services", hash: "services" },
-            { label: "About", path: "/#about", hash: "about" },
-            { label: "Clients", path: "/#clients", hash: "clients" },
-            { label: "Contact", path: "/#contact", hash: "contact" },
-          ].map((link) => (
+          {NAV_LINKS.map((link) => (
             <Link
               key={link.label}
               to={link.path}
-              onClick={() => {
-                if (window.location.pathname === "/") scrollTo(link.hash);
+              onClick={(e) => {
+                if (link.hash) {
+                  if (window.location.pathname === "/") {
+                    e.preventDefault();
+                    scrollTo(link.hash);
+                  }
+                } else {
+                  e.preventDefault();
+                  navigate(link.path);
+                }
                 setMenuOpen(false);
               }}
               style={{

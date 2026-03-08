@@ -5,6 +5,7 @@ import { ServicesSection } from "../components/home/ServicesSection";
 import { AboutSection } from "../components/home/AboutSection";
 import { ClientsSection } from "../components/home/ClientsSection";
 import { ContactSection } from "../components/home/ContactSection";
+import { LatestPostsSection } from "../components/home/LatestPostsSection";
 
 export function HomePage() {
   const location = useLocation();
@@ -25,6 +26,7 @@ export function HomePage() {
       <ServicesSection />
       <AboutSection />
       <ClientsSection />
+      <LatestPostsSection />
       <ContactSection />
     </main>
   );

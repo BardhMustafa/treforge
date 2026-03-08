@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useAction } from "convex/react";
+import { api } from "../../../convex/_generated/api";
 import { useIsMobile, useIsSmallScreen } from "../../hooks";
 import { PAGE_PADDING_X, SECTION_PADDING_Y } from "../../constants/layout";
 import { SectionLabel } from "../ui/SectionLabel";
@@ -8,17 +10,27 @@ export function ContactSection() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [sent, setSent] = useState(false);
   const [error, setError] = useState("");
+  const [sending, setSending] = useState(false);
   const isMobile = useIsMobile();
   const isSmall = useIsSmallScreen();
+  const sendContactEmail = useAction(api.contact.sendContactEmail);
 
   const handle = (k) => (e) => setForm((f) => ({ ...f, [k]: e.target.value }));
-  const submit = () => {
+  const submit = async () => {
     if (!form.name || !form.email || !form.message) {
       setError("Please fill in all fields.");
       return;
     }
     setError("");
-    setSent(true);
+    setSending(true);
+    try {
+      await sendContactEmail(form);
+      setSent(true);
+    } catch (err) {
+      setError(err.message || "Failed to send message. Please try again.");
+    } finally {
+      setSending(false);
+    }
   };
 
   const inputStyle = {
@@ -155,8 +167,8 @@ export function ContactSection() {
                 {error}
               </div>
             )}
-            <ClipBtn onClick={submit} small={isSmall}>
-              SEND MESSAGE →
+            <ClipBtn onClick={submit} small={isSmall} disabled={sending}>
+              {sending ? "SENDING…" : "SEND MESSAGE →"}
             </ClipBtn>
           </div>
         )}

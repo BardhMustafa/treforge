@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { useScrollY } from "./hooks";
 import { GridBackground } from "./components/ui/GridBackground";
 import { Navbar } from "./components/layout/Navbar";
@@ -7,9 +7,18 @@ import { ScrollToTop } from "./components/layout/ScrollToTop";
 import { HomePage } from "./pages/HomePage";
 import { ClientDetailPage } from "./pages/ClientDetailPage";
 import { ServiceDetailPage } from "./pages/ServiceDetailPage";
+import { BlogListPage } from "./pages/blog/BlogListPage";
+import { BlogPostPage } from "./pages/blog/BlogPostPage";
+import { AdminLayout } from "./pages/admin/AdminLayout";
+import { AdminLoginPage } from "./pages/admin/AdminLoginPage";
+import { AdminDashboardPage } from "./pages/admin/AdminDashboardPage";
+import { AdminCreatePage } from "./pages/admin/AdminCreatePage";
+import { AdminEditPage } from "./pages/admin/AdminEditPage";
 
-export default function App() {
+function AppInner() {
   const scrollY = useScrollY();
+  const location = useLocation();
+  const isAdmin = location.pathname.startsWith("/admin");
 
   return (
     <>
@@ -29,17 +38,31 @@ export default function App() {
         }
       `}</style>
 
-      <BrowserRouter>
-        <ScrollToTop />
-        <GridBackground />
-        <Navbar scrollY={scrollY} />
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/clients/:slug" element={<ClientDetailPage />} />
-          <Route path="/services/:slug" element={<ServiceDetailPage />} />
-        </Routes>
-        <Footer />
-      </BrowserRouter>
+      <ScrollToTop />
+      <GridBackground />
+      {!isAdmin && <Navbar scrollY={scrollY} />}
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/clients/:slug" element={<ClientDetailPage />} />
+        <Route path="/services/:slug" element={<ServiceDetailPage />} />
+        <Route path="/blog" element={<BlogListPage />} />
+        <Route path="/blog/:slug" element={<BlogPostPage />} />
+        <Route path="/admin/login" element={<AdminLoginPage />} />
+        <Route path="/admin" element={<AdminLayout />}>
+          <Route index element={<AdminDashboardPage />} />
+          <Route path="posts/new" element={<AdminCreatePage />} />
+          <Route path="posts/:id/edit" element={<AdminEditPage />} />
+        </Route>
+      </Routes>
+      {!isAdmin && <Footer />}
     </>
+  );
+}
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      <AppInner />
+    </BrowserRouter>
   );
 }

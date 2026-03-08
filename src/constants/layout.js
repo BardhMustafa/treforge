@@ -6,6 +6,7 @@ export const NAV_LINKS = [
   { label: "About", path: "/#about", hash: "about" },
   { label: "Clients", path: "/#clients", hash: "clients" },
   { label: "Contact", path: "/#contact", hash: "contact" },
+  { label: "Blog", path: "/blog" },
 ];
 
 export const scrollTo = (id) => {
