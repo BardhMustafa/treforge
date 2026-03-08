@@ -169,3 +169,68 @@ export const fetchSources = internalAction({
     return itemsFetched;
   },
 });
+
+// ── Generate action ───────────────────────────────────────────────────────────
+
+export const generateDrafts = internalAction({
+  args: { runId: v.id("agentRuns") },
+  handler: async (ctx, { runId }) => {
+    const Anthropic = (await import("@anthropic-ai/sdk")).default;
+    const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
+
+    const items = await ctx.runQuery(internal.agent.getUnprocessedItems);
+    let draftsGenerated = 0;
+
+    for (const item of items) {
+      try {
+        const message = await client.messages.create({
+          model: "claude-sonnet-4-6",
+          max_tokens: 1024,
+          messages: [
+            {
+              role: "user",
+              content: `You are a tech blogger who writes sharp, concise takes on AI news.
+
+Here is a news item:
+Title: ${item.title}
+URL: ${item.url}
+Content: ${item.content}
+
+Is this genuinely interesting and relevant AI news worth writing about?
+
+If YES: respond in this exact JSON format (no markdown, no extra text):
+{
+  "interesting": true,
+  "title": "Your engaging title here",
+  "body": "Your 150-300 word personal take here. Be insightful and direct.",
+  "tweet": "Your 1-2 sentence tweet here. Max 280 chars."
+}
+
+If NO: respond with exactly: {"interesting": false}`,
+            },
+          ],
+        });
+
+        const text = message.content[0].type === "text" ? message.content[0].text : "";
+        const parsed = JSON.parse(text);
+
+        if (parsed.interesting) {
+          await ctx.runMutation(internal.agent.saveDraft, {
+            sourceItemId: item._id,
+            title: parsed.title,
+            body: parsed.body,
+            tweetDraft: parsed.tweet,
+          });
+          draftsGenerated++;
+        }
+      } catch (err) {
+        console.error(`Failed to generate draft for item ${item._id}:`, err);
+      } finally {
+        await ctx.runMutation(internal.agent.markItemProcessed, { id: item._id });
+      }
+    }
+
+    await ctx.runMutation(internal.agent.updateAgentRun, { id: runId, draftsGenerated });
+    return draftsGenerated;
+  },
+});
