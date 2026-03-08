@@ -17,6 +17,7 @@ import { AdminEditPage } from "./pages/admin/AdminEditPage";
 import { AdminOffersPage } from "./pages/admin/AdminOffersPage";
 import { AdminCreateOfferPage } from "./pages/admin/AdminCreateOfferPage";
 import { AdminOfferFeedbackPage } from "./pages/admin/AdminOfferFeedbackPage";
+import { AdminSourcesPage } from "./pages/admin/AdminSourcesPage";
 import { OfferPage } from "./pages/OfferPage";
 
 function AppInner() {
@@ -60,6 +61,7 @@ function AppInner() {
           <Route path="offers" element={<AdminOffersPage />} />
           <Route path="offers/new" element={<AdminCreateOfferPage />} />
           <Route path="offers/:id/feedback" element={<AdminOfferFeedbackPage />} />
+          <Route path="sources" element={<AdminSourcesPage />} />
         </Route>
       </Routes>
       {!isAdmin && <Footer />}
