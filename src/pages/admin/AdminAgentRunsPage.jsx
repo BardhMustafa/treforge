@@ -1,4 +1,5 @@
-import { useQuery } from "convex/react";
+import { useState } from "react";
+import { useQuery, useAction } from "convex/react";
 import { api } from "../../../convex/_generated/api";
 
 const mono = "'Space Mono', monospace";
@@ -6,12 +7,32 @@ const accent = "#00ffb4";
 
 export function AdminAgentRunsPage() {
   const runs = useQuery(api.agentRuns.getAgentRuns) ?? [];
+  const triggerRun = useAction(api.agentRuns.triggerRun);
+  const [running, setRunning] = useState(false);
+
+  const handleRun = async () => {
+    setRunning(true);
+    try {
+      await triggerRun();
+    } finally {
+      setRunning(false);
+    }
+  };
 
   return (
     <div>
-      <h1 style={{ fontFamily: "'Orbitron', monospace", fontSize: 22, color: "#fff", letterSpacing: 2, marginBottom: 32 }}>AGENT RUNS</h1>
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 32 }}>
+        <h1 style={{ fontFamily: "'Orbitron', monospace", fontSize: 22, color: "#fff", letterSpacing: 2 }}>AGENT RUNS</h1>
+        <button
+          onClick={handleRun}
+          disabled={running}
+          style={{ background: running ? "rgba(0,255,180,0.1)" : accent, color: running ? accent : "#000", border: `1px solid ${accent}`, padding: "8px 18px", borderRadius: 4, fontFamily: mono, fontSize: 12, cursor: running ? "not-allowed" : "pointer", letterSpacing: 1, opacity: running ? 0.7 : 1 }}
+        >
+          {running ? "Running..." : "▶ Run Now"}
+        </button>
+      </div>
       {runs.length === 0 ? (
-        <p style={{ fontFamily: mono, fontSize: 13, color: "rgba(255,255,255,0.3)" }}>No runs yet. The agent runs every 2 days.</p>
+        <p style={{ fontFamily: mono, fontSize: 13, color: "rgba(255,255,255,0.3)" }}>No runs yet. Hit "Run Now" or wait for the automatic 2-day schedule.</p>
       ) : (
         <table style={{ width: "100%", borderCollapse: "collapse" }}>
           <thead>
