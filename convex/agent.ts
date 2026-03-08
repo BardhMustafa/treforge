@@ -234,3 +234,46 @@ If NO: respond with exactly: {"interesting": false}`,
     return draftsGenerated;
   },
 });
+
+// ── Notify action ─────────────────────────────────────────────────────────────
+
+export const notifyNewDrafts = internalAction({
+  args: { draftsGenerated: v.number() },
+  handler: async (ctx, { draftsGenerated }) => {
+    if (draftsGenerated === 0) return;
+    const { Resend } = await import("resend");
+    const resend = new Resend(process.env.RESEND_API_KEY);
+    await resend.emails.send({
+      from: "agent@treforge.dev",
+      to: process.env.NOTIFY_EMAIL ?? "",
+      subject: `[Treforge] ${draftsGenerated} new draft${draftsGenerated > 1 ? "s" : ""} ready`,
+      html: `<p>${draftsGenerated} new AI article draft${draftsGenerated > 1 ? "s are" : " is"} ready for your review.</p><p><a href="https://treforge.dev/admin/drafts">Review drafts →</a></p>`,
+    });
+  },
+});
+
+// ── Main orchestrator ─────────────────────────────────────────────────────────
+
+export const run = internalAction({
+  args: {},
+  handler: async (ctx) => {
+    const runId = await ctx.runMutation(internal.agent.createAgentRun);
+    try {
+      const itemsFetched = await ctx.runAction(internal.agent.fetchSources, { runId });
+      const draftsGenerated = await ctx.runAction(internal.agent.generateDrafts, { runId });
+      await ctx.runMutation(internal.agent.updateAgentRun, {
+        id: runId,
+        completedAt: Date.now(),
+        itemsFetched,
+        draftsGenerated,
+      });
+      await ctx.runAction(internal.agent.notifyNewDrafts, { draftsGenerated });
+    } catch (err) {
+      await ctx.runMutation(internal.agent.updateAgentRun, {
+        id: runId,
+        completedAt: Date.now(),
+        error: String(err),
+      });
+    }
+  },
+});
