@@ -49,6 +49,9 @@ export function AdminLayout() {
           <Link to="/admin/posts/new" style={{ fontFamily: "'Space Mono',monospace", fontSize: 12, color: "rgba(255,255,255,0.6)", textDecoration: "none", letterSpacing: 1 }}>
             New Post
           </Link>
+          <Link to="/admin/offers" style={{ fontFamily: "'Space Mono',monospace", fontSize: 12, color: "rgba(255,255,255,0.6)", textDecoration: "none", letterSpacing: 1 }}>
+            Offers
+          </Link>
           <button
             onClick={handleSignOut}
             style={{ background: "none", border: "1px solid rgba(0,255,180,0.2)", color: "rgba(255,255,255,0.5)", cursor: "pointer", padding: "5px 14px", borderRadius: 4, fontFamily: "'Space Mono',monospace", fontSize: 11, letterSpacing: 1 }}

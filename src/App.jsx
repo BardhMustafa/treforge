@@ -14,6 +14,10 @@ import { AdminLoginPage } from "./pages/admin/AdminLoginPage";
 import { AdminDashboardPage } from "./pages/admin/AdminDashboardPage";
 import { AdminCreatePage } from "./pages/admin/AdminCreatePage";
 import { AdminEditPage } from "./pages/admin/AdminEditPage";
+import { AdminOffersPage } from "./pages/admin/AdminOffersPage";
+import { AdminCreateOfferPage } from "./pages/admin/AdminCreateOfferPage";
+import { AdminOfferFeedbackPage } from "./pages/admin/AdminOfferFeedbackPage";
+import { OfferPage } from "./pages/OfferPage";
 
 function AppInner() {
   const scrollY = useScrollY();
@@ -47,11 +51,15 @@ function AppInner() {
         <Route path="/services/:slug" element={<ServiceDetailPage />} />
         <Route path="/blog" element={<BlogListPage />} />
         <Route path="/blog/:slug" element={<BlogPostPage />} />
+        <Route path="/offer/:token" element={<OfferPage />} />
         <Route path="/admin/login" element={<AdminLoginPage />} />
         <Route path="/admin" element={<AdminLayout />}>
           <Route index element={<AdminDashboardPage />} />
           <Route path="posts/new" element={<AdminCreatePage />} />
           <Route path="posts/:id/edit" element={<AdminEditPage />} />
+          <Route path="offers" element={<AdminOffersPage />} />
+          <Route path="offers/new" element={<AdminCreateOfferPage />} />
+          <Route path="offers/:id/feedback" element={<AdminOfferFeedbackPage />} />
         </Route>
       </Routes>
       {!isAdmin && <Footer />}
