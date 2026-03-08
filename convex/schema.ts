@@ -15,4 +15,22 @@ export default defineSchema({
     updatedAt: v.number(),
     authorId: v.id("users"),
   }).index("by_slug", ["slug"]).index("by_published", ["published"]),
+
+  offers: defineTable({
+    companyName: v.string(),
+    companyLogo: v.optional(v.string()),
+    offerTitle: v.string(),
+    description: v.string(),
+    infoLink: v.optional(v.string()),
+    mvpLink: v.optional(v.string()),
+    token: v.string(),
+    createdAt: v.number(),
+  }).index("by_token", ["token"]),
+
+  feedback: defineTable({
+    offerId: v.id("offers"),
+    rating: v.number(),
+    comment: v.string(),
+    submittedAt: v.number(),
+  }).index("by_offer", ["offerId"]),
 });
