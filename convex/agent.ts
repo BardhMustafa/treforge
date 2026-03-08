@@ -175,19 +175,19 @@ export const fetchSources = internalAction({
 export const generateDrafts = internalAction({
   args: { runId: v.id("agentRuns") },
   handler: async (ctx, { runId }) => {
-    const Anthropic = (await import("@anthropic-ai/sdk")).default;
-    if (!process.env.ANTHROPIC_API_KEY) {
-      throw new Error("ANTHROPIC_API_KEY environment variable is not set");
+    const OpenAI = (await import("openai")).default;
+    if (!process.env.OPENAI_API_KEY) {
+      throw new Error("OPENAI_API_KEY environment variable is not set");
     }
-    const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
+    const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
     const items = await ctx.runQuery(internal.agent.getUnprocessedItems);
     let draftsGenerated = 0;
 
     for (const item of items) {
       try {
-        const message = await client.messages.create({
-          model: "claude-sonnet-4-6",
+        const response = await client.chat.completions.create({
+          model: "gpt-4o-mini",
           max_tokens: 1024,
           messages: [
             {
@@ -214,7 +214,7 @@ If NO: respond with exactly: {"interesting": false}`,
           ],
         });
 
-        const text = message.content[0].type === "text" ? message.content[0].text : "";
+        const text = response.choices[0]?.message?.content ?? "";
         const parsed = JSON.parse(text);
 
         if (parsed.interesting) {

@@ -2,13 +2,6 @@
 # yarn lockfile v1
 
 
-"@anthropic-ai/sdk@^0.78.0":
-  "integrity" "sha512-PzQhR715td/m1UaaN5hHXjYB8Gl2lF9UVhrrGrZeysiF6Rb74Wc9GCB8hzLdzmQtBd1qe89F9OptgB9Za1Ib5w=="
-  "resolved" "https://registry.npmjs.org/@anthropic-ai/sdk/-/sdk-0.78.0.tgz"
-  "version" "0.78.0"
-  dependencies:
-    "json-schema-to-ts" "^3.1.1"
-
 "@auth/core@^0.37.0", "@auth/core@0.37.4":
   "integrity" "sha512-HOXJwXWXQRhbBDHlMU0K/6FT1v+wjtzdKhsNg0ZN7/gne6XPsIrjZ4daMcFnbq0Z/vsAbYBinQhhua0d77v7qw=="
   "resolved" "https://registry.npmjs.org/@auth/core/-/core-0.37.4.tgz"
@@ -147,11 +140,6 @@
   "version" "7.27.1"
   dependencies:
     "@babel/helper-plugin-utils" "^7.27.1"
-
-"@babel/runtime@^7.18.3":
-  "integrity" "sha512-05WQkdpL9COIMz4LjTxGpPNCdlpyimKppYNoJ5Di5EUObifl8t4tuLuUBBZEpoLYOmfvIWrsp9fCl0HoPRVTdA=="
-  "resolved" "https://registry.npmjs.org/@babel/runtime/-/runtime-7.28.6.tgz"
-  "version" "7.28.6"
 
 "@babel/template@^7.28.6":
   "integrity" "sha512-YA6Ma2KsCdGb+WC6UpBVFJGXL58MDA6oyONbjyF/+5sBgxY/dwkhLogbMT2GXXyU84/IhRw/2D1Os1B/giz+BQ=="
@@ -911,14 +899,6 @@
   "resolved" "https://registry.npmjs.org/jsesc/-/jsesc-3.1.0.tgz"
   "version" "3.1.0"
 
-"json-schema-to-ts@^3.1.1":
-  "integrity" "sha512-+DWg8jCJG2TEnpy7kOm/7/AxaYoaRbjVB4LFZLySZlWn8exGs3A4OLJR966cVvU26N7X9TWxl+Jsw7dzAqKT6g=="
-  "resolved" "https://registry.npmjs.org/json-schema-to-ts/-/json-schema-to-ts-3.1.1.tgz"
-  "version" "3.1.1"
-  dependencies:
-    "@babel/runtime" "^7.18.3"
-    "ts-algebra" "^2.0.0"
-
 "json5@^2.2.3":
   "integrity" "sha512-XmOWe7eyHYH14cLdVPoyg+GOH3rYX++KpzrylJwSW98t3Nk+U8XOl8FWKOgwtzdb8lXGf6zYwDUzeHMWfxasyg=="
   "resolved" "https://registry.npmjs.org/json5/-/json5-2.2.3.tgz"
@@ -1006,6 +986,11 @@
   "integrity" "sha512-A8jmyUckVhRJj5lspguklcl90Ydqk61H3dcU0oLhH3Yv13KpAliKTt5hknpGGPZSSfOwGyraNEFmofDYH+1kSg=="
   "resolved" "https://registry.npmjs.org/oauth4webapi/-/oauth4webapi-3.8.5.tgz"
   "version" "3.8.5"
+
+"openai@^6.27.0":
+  "integrity" "sha512-osTKySlrdYrLYTt0zjhY8yp0JUBmWDCN+Q+QxsV4xMQnnoVFpylgKGgxwN8sSdTNw0G4y+WUXs4eCMWpyDNWZQ=="
+  "resolved" "https://registry.npmjs.org/openai/-/openai-6.27.0.tgz"
+  "version" "6.27.0"
 
 "orderedmap@^2.0.0":
   "integrity" "sha512-TvAWxi0nDe1j/rtMcWcIj94+Ffe6n7zhow33h40SKxmsmozs6dz/e+EajymfoFcHd7sxNn8yHM8839uixMOV6g=="
@@ -1370,11 +1355,6 @@
     "standardwebhooks" "1.0.0"
     "uuid" "^10.0.0"
 
-"ts-algebra@^2.0.0":
-  "integrity" "sha512-FPAhNPFMrkwz76P7cdjdmiShwMynZYN6SgOujD1urY4oNm80Ou9oMdmbR45LotcKOXoy7wSmHkRFE6Mxbrhefw=="
-  "resolved" "https://registry.npmjs.org/ts-algebra/-/ts-algebra-2.0.0.tgz"
-  "version" "2.0.0"
-
 "twitter-api-v2@^1.29.0":
   "integrity" "sha512-v473q5bwme4N+DWSg6qY+JCvfg1nSJRWwui3HUALafxfqCvVkKiYmS/5x/pVeJwTmyeBxexMbzHwnzrH4h6oYQ=="
   "resolved" "https://registry.npmjs.org/twitter-api-v2/-/twitter-api-v2-1.29.0.tgz"
@@ -1436,7 +1416,7 @@
   "resolved" "https://registry.npmjs.org/whatwg-mimetype/-/whatwg-mimetype-4.0.0.tgz"
   "version" "4.0.0"
 
-"ws@8.18.0":
+"ws@^8.18.0", "ws@8.18.0":
   "integrity" "sha512-8VbfWfHLbbwu3+N6OKsOMpBdT4kXPDDB9cJk2bJ6mh9ucxdlnNvH1e+roYkKmN9Nxw2yjz7VzeO9oOz2zJ04Pw=="
   "resolved" "https://registry.npmjs.org/ws/-/ws-8.18.0.tgz"
   "version" "8.18.0"
