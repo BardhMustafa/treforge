@@ -176,6 +176,9 @@ export const generateDrafts = internalAction({
   args: { runId: v.id("agentRuns") },
   handler: async (ctx, { runId }) => {
     const Anthropic = (await import("@anthropic-ai/sdk")).default;
+    if (!process.env.ANTHROPIC_API_KEY) {
+      throw new Error("ANTHROPIC_API_KEY environment variable is not set");
+    }
     const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
     const items = await ctx.runQuery(internal.agent.getUnprocessedItems);

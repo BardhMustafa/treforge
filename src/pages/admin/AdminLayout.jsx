@@ -55,11 +55,11 @@ export function AdminLayout() {
           <Link to="/admin/sources" style={{ fontFamily: "'Space Mono',monospace", fontSize: 12, color: "rgba(255,255,255,0.6)", textDecoration: "none", letterSpacing: 1 }}>
             Sources
           </Link>
-          <Link to="/admin/agent-runs" style={{ fontFamily: "'Space Mono',monospace", fontSize: 12, color: "rgba(255,255,255,0.6)", textDecoration: "none", letterSpacing: 1 }}>
-            Agent Runs
-          </Link>
           <Link to="/admin/drafts" style={{ fontFamily: "'Space Mono',monospace", fontSize: 12, color: "rgba(255,255,255,0.6)", textDecoration: "none", letterSpacing: 1 }}>
             Drafts
+          </Link>
+          <Link to="/admin/agent-runs" style={{ fontFamily: "'Space Mono',monospace", fontSize: 12, color: "rgba(255,255,255,0.6)", textDecoration: "none", letterSpacing: 1 }}>
+            Agent Runs
           </Link>
           <button
             onClick={handleSignOut}
