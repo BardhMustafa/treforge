@@ -5,7 +5,7 @@ const crons = cronJobs();
 
 crons.interval(
   "run AI content agent",
-  { days: 2 },
+  { hours: 48 },
   internal.agent.run,
 );
 
