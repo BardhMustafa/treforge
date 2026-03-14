@@ -22,6 +22,7 @@ import { AdminAgentRunsPage } from "./pages/admin/AdminAgentRunsPage";
 import { AdminDraftsPage } from "./pages/admin/AdminDraftsPage";
 import { OfferPage } from "./pages/OfferPage";
 import { BriefModalProvider } from "./context/BriefModalContext";
+import { BriefModal } from "./components/brief/BriefModal";
 
 function AppInner() {
   const scrollY = useScrollY();
@@ -70,6 +71,7 @@ function AppInner() {
         </Route>
       </Routes>
       {!isAdmin && <Footer />}
+      <BriefModal />
     </BriefModalProvider>
   );
 }
