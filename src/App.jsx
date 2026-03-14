@@ -21,6 +21,7 @@ import { AdminSourcesPage } from "./pages/admin/AdminSourcesPage";
 import { AdminAgentRunsPage } from "./pages/admin/AdminAgentRunsPage";
 import { AdminDraftsPage } from "./pages/admin/AdminDraftsPage";
 import { OfferPage } from "./pages/OfferPage";
+import { BriefModalProvider } from "./context/BriefModalContext";
 
 function AppInner() {
   const scrollY = useScrollY();
@@ -28,7 +29,7 @@ function AppInner() {
   const isAdmin = location.pathname.startsWith("/admin");
 
   return (
-    <>
+    <BriefModalProvider>
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Mono:wght@400;700&display=swap');
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -69,7 +70,7 @@ function AppInner() {
         </Route>
       </Routes>
       {!isAdmin && <Footer />}
-    </>
+    </BriefModalProvider>
   );
 }
 
