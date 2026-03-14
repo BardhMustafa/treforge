@@ -3,7 +3,7 @@ import { useIsMobile, useIsSmallScreen } from "../../hooks";
 import { PAGE_PADDING_X } from "../../constants/layout";
 import { ClipBtn } from "../ui/ClipBtn";
 import { GhostBtn } from "../ui/GhostBtn";
-import { scrollTo } from "../../constants/layout";
+import { useBriefModal } from "../../context/BriefModalContext";
 
 const SCRAMBLE_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 const HERO_WORD = "DRIVEN BY AI";
@@ -13,6 +13,7 @@ export function Hero() {
   const [, forceUpdate] = useState(0);
   const isMobile = useIsMobile();
   const isSmall = useIsSmallScreen();
+  const { openBrief } = useBriefModal();
 
   useEffect(() => {
     const duration = 1800;
@@ -173,7 +174,7 @@ export function Hero() {
         </p>
 
         <div style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
-          <ClipBtn onClick={() => scrollTo("contact")} small={isSmall}>
+          <ClipBtn onClick={openBrief} small={isSmall}>
             Start Your MVP
           </ClipBtn>
           <GhostBtn onClick={() => scrollTo("services")} small={isSmall}>
