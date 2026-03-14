@@ -1,11 +1,19 @@
 // Wraps a single product: title, tagline, and the appropriate diagram (pipeline or dashboard).
 // product shape: { title, tagline, visual, nodes, nodeLabels, kpis? }
 
+import { useState } from "react";
 import { PipelineDiagram } from "./PipelineDiagram";
 import { DashboardMockup } from "./DashboardMockup";
+import { StepPanel } from "./StepPanel";
 
 export function ProductShowcase({ product, index }) {
   const { title, tagline, visual, nodes, nodeLabels, kpis } = product;
+
+  const [activeStep, setActiveStep] = useState(null);
+
+  function handleStepClick(i) {
+    setActiveStep((prev) => (prev === i ? null : i));
+  }
 
   return (
     <div
@@ -58,9 +66,24 @@ export function ProductShowcase({ product, index }) {
 
       {/* Diagram */}
       {visual === "dashboard" ? (
-        <DashboardMockup nodes={nodes} nodeLabels={nodeLabels} kpis={kpis} />
+        <DashboardMockup
+          nodes={nodes}
+          nodeLabels={nodeLabels}
+          kpis={kpis}
+          activeStep={activeStep}
+          onStepClick={handleStepClick}
+        />
       ) : (
-        <PipelineDiagram nodes={nodes} nodeLabels={nodeLabels} />
+        <PipelineDiagram
+          nodes={nodes}
+          nodeLabels={nodeLabels}
+          activeStep={activeStep}
+          onStepClick={handleStepClick}
+        />
+      )}
+
+      {product.steps && activeStep !== null && (
+        <StepPanel step={product.steps[activeStep]} index={activeStep} />
       )}
     </div>
   );
