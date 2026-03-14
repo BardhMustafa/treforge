@@ -44,7 +44,7 @@ export function DashboardMockup({ nodes = [], nodeLabels = [], kpis = [] }) {
         </div>
       </div>
 
-      <div style={{ padding: "20px 20px 24px" }}>
+      <div style={{ padding: "32px 32px 36px" }}>
         {/* Flow diagram */}
         <div style={{ marginBottom: 24 }}>
           <div
@@ -88,7 +88,7 @@ export function DashboardMockup({ nodes = [], nodeLabels = [], kpis = [] }) {
                 <div
                   key={kpi}
                   style={{
-                    padding: "14px 12px",
+                    padding: "24px 20px",
                     border: "1px solid rgba(0,255,180,0.12)",
                     background: "rgba(0,255,180,0.03)",
                     borderRadius: 3,
@@ -98,7 +98,7 @@ export function DashboardMockup({ nodes = [], nodeLabels = [], kpis = [] }) {
                   <div
                     style={{
                       fontFamily: "'Orbitron', monospace",
-                      fontSize: "clamp(11px, 2vw, 16px)",
+                      fontSize: "clamp(16px, 2vw, 24px)",
                       fontWeight: 700,
                       color: "#00ffb4",
                       marginBottom: 4,
@@ -110,7 +110,7 @@ export function DashboardMockup({ nodes = [], nodeLabels = [], kpis = [] }) {
                   <div
                     style={{
                       fontFamily: "'Space Mono', monospace",
-                      fontSize: 7,
+                      fontSize: 9,
                       color: "rgba(255,255,255,0.25)",
                       letterSpacing: 2,
                     }}

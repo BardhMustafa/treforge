@@ -5,9 +5,9 @@
 export function PipelineDiagram({ nodes, nodeLabels }) {
   if (!nodes?.length) return null;
 
-  const NODE_W = 130;
-  const NODE_H = 56;
-  const ARROW_W = 40;
+  const NODE_W = 180;
+  const NODE_H = 80;
+  const ARROW_W = 52;
   const TOTAL_W = nodes.length * NODE_W + (nodes.length - 1) * ARROW_W;
   const SVG_H = NODE_H + 32; // node + label space
 
@@ -63,7 +63,7 @@ export function PipelineDiagram({ nodes, nodeLabels }) {
                 textAnchor="middle"
                 fill="rgba(255,255,255,0.85)"
                 fontFamily="'Space Mono', monospace"
-                fontSize={9}
+                fontSize={12}
               >
                 {node.length > 17 ? node.slice(0, 17) + "…" : node}
               </text>
@@ -75,7 +75,7 @@ export function PipelineDiagram({ nodes, nodeLabels }) {
                 textAnchor="middle"
                 fill="#00ffb4"
                 fontFamily="'Space Mono', monospace"
-                fontSize={8}
+                fontSize={10}
                 letterSpacing={2}
               >
                 {label.toUpperCase()}
@@ -115,7 +115,7 @@ export function PipelineDiagram({ nodes, nodeLabels }) {
               textAnchor="middle"
               fill="rgba(255,255,255,0.2)"
               fontFamily="'Space Mono', monospace"
-              fontSize={7}
+              fontSize={9}
               letterSpacing={1}
             >
               {`STEP_${i + 1}`}

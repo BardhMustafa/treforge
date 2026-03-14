@@ -10,7 +10,7 @@ export function ProductShowcase({ product, index }) {
   return (
     <div
       style={{
-        padding: "32px",
+        padding: "48px",
         border: "1px solid rgba(255,255,255,0.05)",
         background: "rgba(255,255,255,0.01)",
         borderRadius: 4,
@@ -34,7 +34,7 @@ export function ProductShowcase({ product, index }) {
         <h3
           style={{
             fontFamily: "'Orbitron', monospace",
-            fontSize: "clamp(16px, 3vw, 22px)",
+            fontSize: "clamp(22px, 3vw, 32px)",
             fontWeight: 700,
             color: "#fff",
             margin: "0 0 8px",
@@ -46,7 +46,7 @@ export function ProductShowcase({ product, index }) {
         <p
           style={{
             fontFamily: "'Space Mono', monospace",
-            fontSize: 12,
+            fontSize: 14,
             color: "rgba(255,255,255,0.4)",
             margin: 0,
             lineHeight: 1.7,

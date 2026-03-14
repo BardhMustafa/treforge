@@ -33,8 +33,6 @@ export function ServiceDetailPage() {
       <section
         style={{
           padding: `${SECTION_PADDING_Y} ${PAGE_PADDING_X}`,
-          maxWidth: 1100,
-          margin: "0 auto",
         }}
       >
         <Link
@@ -180,8 +178,8 @@ export function ServiceDetailPage() {
             <div
               style={{
                 display: "grid",
-                gridTemplateColumns: isMobile ? "1fr" : "repeat(2, 1fr)",
-                gap: 24,
+                gridTemplateColumns: "1fr",
+                gap: 32,
               }}
             >
               {service.products.map((product, i) => (
