@@ -3,6 +3,8 @@
 // nodeLabels: string[] — small label shown below each node (e.g. "Queue")
 
 export function PipelineDiagram({ nodes, nodeLabels }) {
+  if (!nodes?.length) return null;
+
   const NODE_W = 130;
   const NODE_H = 56;
   const ARROW_W = 40;
@@ -22,7 +24,7 @@ export function PipelineDiagram({ nodes, nodeLabels }) {
           const label = nodeLabels?.[i] ?? "";
 
           return (
-            <g key={i}>
+            <g key={`node-${i}`}>
               {/* Arrow between nodes */}
               {i > 0 && (
                 <g>
@@ -36,7 +38,7 @@ export function PipelineDiagram({ nodes, nodeLabels }) {
                   />
                   {/* Arrowhead */}
                   <polygon
-                    points={`${x - 4},${NODE_H / 2 - 5} ${x - 4},${NODE_H / 2 + 5} ${x + 2},${NODE_H / 2}`}
+                    points={`${x - 4},${NODE_H / 2 - 5} ${x - 4},${NODE_H / 2 + 5} ${x},${NODE_H / 2}`}
                     fill="rgba(0,255,180,0.5)"
                   />
                 </g>
@@ -63,7 +65,7 @@ export function PipelineDiagram({ nodes, nodeLabels }) {
                 fontFamily="'Space Mono', monospace"
                 fontSize={9}
               >
-                {node.length > 18 ? node.slice(0, 17) + "…" : node}
+                {node.length > 17 ? node.slice(0, 17) + "…" : node}
               </text>
 
               {/* Label below title */}
