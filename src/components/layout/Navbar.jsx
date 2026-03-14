@@ -44,38 +44,11 @@ export function Navbar({ scrollY }) {
         }}
         onClick={() => window.location.pathname === "/" && scrollTo("hero")}
       >
-        <div
-          style={{
-            width: 28,
-            height: 28,
-            border: "2px solid #00ffb4",
-            transform: "rotate(45deg)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            flexShrink: 0,
-          }}
-        >
-          <div
-            style={{
-              width: 9,
-              height: 9,
-              background: "#00ffb4",
-              transform: "rotate(-45deg)",
-            }}
-          />
-        </div>
-        <span
-          style={{
-            fontFamily: "'Orbitron',monospace",
-            fontWeight: 700,
-            fontSize: "clamp(14px, 3.5vw, 18px)",
-            color: "#fff",
-            letterSpacing: 2,
-          }}
-        >
-          TREFORGE
-        </span>
+        <img
+          src="/logo-no-bg.png"
+          alt="Treforge"
+          style={{ height: 28, width: "auto", display: "block" }}
+        />
       </Link>
 
       {!isMobile && (
