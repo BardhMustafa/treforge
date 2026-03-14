@@ -29,11 +29,11 @@ export function StepPanel({ step, index, onClose, onPrev, onNext, hasPrev, hasNe
           left: "50%",
           transform: "translate(-50%, -50%)",
           zIndex: 101,
-          width: "min(560px, 90vw)",
+          width: "min(616px, 90vw)",
           background: "#0a0a0a",
           border: "1px solid rgba(0,255,180,0.2)",
           borderRadius: 4,
-          padding: "40px 40px 36px",
+          padding: "44px 44px 40px",
         }}
       >
         {/* Close button */}
