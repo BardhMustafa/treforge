@@ -51,6 +51,7 @@ export function ServiceCard({ service, active, onMouseEnter, onMouseLeave, isSma
       </Link>
       <button
         onClick={onBrief}
+        tabIndex={active ? 0 : -1}
         style={{
           background: "rgba(0,255,180,0.06)",
           border: `1px solid ${active ? "rgba(0,255,180,0.3)" : "rgba(255,255,255,0.06)"}`,
@@ -64,6 +65,7 @@ export function ServiceCard({ service, active, onMouseEnter, onMouseLeave, isSma
           width: "100%",
           textAlign: "left",
           opacity: active ? 1 : 0,
+          pointerEvents: active ? "auto" : "none",
           transition: "all 0.25s",
         }}
       >
