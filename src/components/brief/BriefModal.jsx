@@ -83,6 +83,7 @@ export function BriefModal() {
   const [sent, setSent] = useState(false);
   const [sending, setSending] = useState(false);
   const [error, setError] = useState("");
+  const [otherSelected, setOtherSelected] = useState(false);
   const sendContactEmail = useAction(api.contact.sendContactEmail);
 
   // Close on ESC
@@ -101,7 +102,7 @@ export function BriefModal() {
 
   const handleClose = () => {
     closeBrief();
-    setTimeout(() => { setStep(0); setForm({ projectType: "", description: "", budget: "", timeline: "", name: "", email: "" }); setSent(false); setError(""); }, 200);
+    setTimeout(() => { setStep(0); setForm({ projectType: "", description: "", budget: "", timeline: "", name: "", email: "" }); setSent(false); setError(""); setOtherSelected(false); }, 200);
   };
 
   const canAdvance = () => {
@@ -179,30 +180,53 @@ export function BriefModal() {
 
               {/* Step content */}
               {current.type === "select" && (
-                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(140px, 1fr))", gap: 8 }}>
-                  {current.options.map((opt) => {
-                    const selected = form[current.key] === opt;
-                    return (
-                      <button
-                        key={opt}
-                        onClick={() => { setForm((f) => ({ ...f, [current.key]: opt })); setError(""); }}
-                        style={{
-                          padding: "14px 12px",
-                          background: selected ? "rgba(0,255,180,0.08)" : "rgba(255,255,255,0.03)",
-                          border: `1px solid ${selected ? "rgba(0,255,180,0.5)" : "rgba(255,255,255,0.08)"}`,
-                          color: selected ? "#00ffb4" : "rgba(255,255,255,0.6)",
-                          fontFamily: "'Space Mono',monospace",
-                          fontSize: 11,
-                          letterSpacing: 1,
-                          cursor: "pointer",
-                          transition: "all 0.15s",
-                          textAlign: "center",
-                        }}
-                      >
-                        {opt}
-                      </button>
-                    );
-                  })}
+                <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                  <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(140px, 1fr))", gap: 8 }}>
+                    {current.options.map((opt) => {
+                      const isOther = opt === "Other";
+                      const selected = isOther ? otherSelected : form[current.key] === opt;
+                      return (
+                        <button
+                          key={opt}
+                          onClick={() => {
+                            if (isOther) {
+                              setOtherSelected(true);
+                              setForm((f) => ({ ...f, [current.key]: "" }));
+                            } else {
+                              setOtherSelected(false);
+                              setForm((f) => ({ ...f, [current.key]: opt }));
+                            }
+                            setError("");
+                          }}
+                          style={{
+                            padding: "14px 12px",
+                            background: selected ? "rgba(0,255,180,0.08)" : "rgba(255,255,255,0.03)",
+                            border: `1px solid ${selected ? "rgba(0,255,180,0.5)" : "rgba(255,255,255,0.08)"}`,
+                            color: selected ? "#00ffb4" : "rgba(255,255,255,0.6)",
+                            fontFamily: "'Space Mono',monospace",
+                            fontSize: 11,
+                            letterSpacing: 1,
+                            cursor: "pointer",
+                            transition: "all 0.15s",
+                            textAlign: "center",
+                          }}
+                        >
+                          {opt}
+                        </button>
+                      );
+                    })}
+                  </div>
+                  {otherSelected && (
+                    <input
+                      autoFocus
+                      placeholder="Describe your project type..."
+                      value={form[current.key]}
+                      onChange={(e) => { setForm((f) => ({ ...f, [current.key]: e.target.value })); setError(""); }}
+                      style={inputStyle}
+                      onFocus={(e) => (e.target.style.borderColor = "rgba(0,255,180,0.5)")}
+                      onBlur={(e) => (e.target.style.borderColor = "rgba(255,255,255,0.1)")}
+                    />
+                  )}
                 </div>
               )}
 
