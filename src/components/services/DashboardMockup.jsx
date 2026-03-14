@@ -4,7 +4,7 @@
 
 import { PipelineDiagram } from "./PipelineDiagram";
 
-export function DashboardMockup({ nodes, nodeLabels, kpis = [] }) {
+export function DashboardMockup({ nodes = [], nodeLabels = [], kpis = [] }) {
   return (
     <div
       style={{
@@ -27,7 +27,7 @@ export function DashboardMockup({ nodes, nodeLabels, kpis = [] }) {
       >
         {["rgba(255,80,80,0.5)", "rgba(255,180,0,0.5)", "rgba(0,255,180,0.5)"].map((c, i) => (
           <div
-            key={i}
+            key={`dot-${i}`}
             style={{ width: 8, height: 8, borderRadius: "50%", background: c }}
           />
         ))}
@@ -86,7 +86,7 @@ export function DashboardMockup({ nodes, nodeLabels, kpis = [] }) {
             >
               {kpis.map((kpi, i) => (
                 <div
-                  key={i}
+                  key={kpi}
                   style={{
                     padding: "14px 12px",
                     border: "1px solid rgba(0,255,180,0.12)",
