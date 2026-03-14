@@ -1,9 +1,10 @@
 // Modal overlay for a clicked pipeline node.
 // step: { label, benefit, tech: string[] }
 // index: number — 0-based node index
-// onClose: () => void
+// onClose, onPrev, onNext: () => void
+// hasPrev, hasNext: boolean
 
-export function StepPanel({ step, index, onClose }) {
+export function StepPanel({ step, index, onClose, onPrev, onNext, hasPrev, hasNext }) {
   if (!step) return null;
 
   return (
@@ -108,7 +109,57 @@ export function StepPanel({ step, index, onClose }) {
             </div>
           ))}
         </div>
+
+        {/* Navigation */}
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            marginTop: 32,
+            borderTop: "1px solid rgba(255,255,255,0.06)",
+            paddingTop: 20,
+          }}
+        >
+          <NavArrow onClick={onPrev} disabled={!hasPrev} label="← PREV" />
+          <span
+            style={{
+              fontFamily: "'Space Mono', monospace",
+              fontSize: 9,
+              color: "rgba(255,255,255,0.2)",
+              letterSpacing: 3,
+            }}
+          >
+            {String(index + 1).padStart(2, "0")}
+          </span>
+          <NavArrow onClick={onNext} disabled={!hasNext} label="NEXT →" />
+        </div>
       </div>
     </>
+  );
+}
+
+function NavArrow({ onClick, disabled, label }) {
+  return (
+    <button
+      onClick={onClick}
+      disabled={disabled}
+      style={{
+        background: "none",
+        border: "1px solid rgba(255,255,255,0.08)",
+        color: disabled ? "rgba(255,255,255,0.15)" : "rgba(255,255,255,0.6)",
+        fontFamily: "'Space Mono', monospace",
+        fontSize: 10,
+        letterSpacing: 2,
+        cursor: disabled ? "default" : "pointer",
+        padding: "8px 16px",
+        borderRadius: 2,
+        transition: "color 0.15s, border-color 0.15s",
+      }}
+      onMouseEnter={(e) => { if (!disabled) { e.currentTarget.style.color = "#00ffb4"; e.currentTarget.style.borderColor = "rgba(0,255,180,0.4)"; } }}
+      onMouseLeave={(e) => { if (!disabled) { e.currentTarget.style.color = "rgba(255,255,255,0.6)"; e.currentTarget.style.borderColor = "rgba(255,255,255,0.08)"; } }}
+    >
+      {label}
+    </button>
   );
 }

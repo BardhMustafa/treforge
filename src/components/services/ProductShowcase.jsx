@@ -19,10 +19,21 @@ export function ProductShowcase({ product, index }) {
     setActiveStep(null);
   }
 
+  function handlePrev() {
+    setActiveStep((i) => (i > 0 ? i - 1 : i));
+  }
+
+  function handleNext() {
+    const total = product.steps?.length ?? 0;
+    setActiveStep((i) => (i < total - 1 ? i + 1 : i));
+  }
+
   useEffect(() => {
     if (activeStep === null) return;
     function onKey(e) {
       if (e.key === "Escape") setActiveStep(null);
+      if (e.key === "ArrowLeft") handlePrev();
+      if (e.key === "ArrowRight") handleNext();
     }
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
@@ -96,7 +107,15 @@ export function ProductShowcase({ product, index }) {
       )}
 
       {product.steps && activeStep !== null && (
-        <StepPanel step={product.steps[activeStep]} index={activeStep} onClose={handleClose} />
+        <StepPanel
+          step={product.steps[activeStep]}
+          index={activeStep}
+          onClose={handleClose}
+          onPrev={handlePrev}
+          onNext={handleNext}
+          hasPrev={activeStep > 0}
+          hasNext={activeStep < product.steps.length - 1}
+        />
       )}
     </div>
   );
