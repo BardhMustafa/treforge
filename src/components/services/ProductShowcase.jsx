@@ -1,7 +1,7 @@
 // Wraps a single product: title, tagline, and the appropriate diagram (pipeline or dashboard).
 // product shape: { title, tagline, visual, nodes, nodeLabels, kpis? }
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { PipelineDiagram } from "./PipelineDiagram";
 import { DashboardMockup } from "./DashboardMockup";
 import { StepPanel } from "./StepPanel";
@@ -12,8 +12,21 @@ export function ProductShowcase({ product, index }) {
   const [activeStep, setActiveStep] = useState(null);
 
   function handleStepClick(i) {
-    setActiveStep((prev) => (prev === i ? null : i));
+    setActiveStep(i);
   }
+
+  function handleClose() {
+    setActiveStep(null);
+  }
+
+  useEffect(() => {
+    if (activeStep === null) return;
+    function onKey(e) {
+      if (e.key === "Escape") setActiveStep(null);
+    }
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [activeStep]);
 
   return (
     <div
@@ -83,7 +96,7 @@ export function ProductShowcase({ product, index }) {
       )}
 
       {product.steps && activeStep !== null && (
-        <StepPanel step={product.steps[activeStep]} index={activeStep} />
+        <StepPanel step={product.steps[activeStep]} index={activeStep} onClose={handleClose} />
       )}
     </div>
   );
