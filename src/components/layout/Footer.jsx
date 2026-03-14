@@ -28,38 +28,11 @@ export function Footer() {
           textDecoration: "none",
         }}
       >
-        <div
-          style={{
-            width: 22,
-            height: 22,
-            border: "1.5px solid rgba(0,255,180,0.5)",
-            transform: "rotate(45deg)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            flexShrink: 0,
-          }}
-        >
-          <div
-            style={{
-              width: 6,
-              height: 6,
-              background: "rgba(0,255,180,0.6)",
-              transform: "rotate(-45deg)",
-            }}
-          />
-        </div>
-        <span
-          style={{
-            fontFamily: "'Orbitron',monospace",
-            fontWeight: 700,
-            fontSize: 13,
-            color: "rgba(255,255,255,0.45)",
-            letterSpacing: 2,
-          }}
-        >
-          TREFORGE
-        </span>
+        <img
+          src="/logo-no-bg.png"
+          alt="Treforge"
+          style={{ height: 22, width: "auto", display: "block", opacity: 0.5 }}
+        />
       </Link>
       <div
         style={{
