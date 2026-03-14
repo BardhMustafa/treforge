@@ -2,7 +2,7 @@
 // nodes: string[] — the box titles (e.g. "Kafka")
 // nodeLabels: string[] — small label shown below each node (e.g. "Queue")
 
-export function PipelineDiagram({ nodes, nodeLabels }) {
+export function PipelineDiagram({ nodes, nodeLabels, activeStep = null, onStepClick }) {
   if (!nodes?.length) return null;
 
   const NODE_W = 180;
@@ -24,7 +24,11 @@ export function PipelineDiagram({ nodes, nodeLabels }) {
           const label = nodeLabels?.[i] ?? "";
 
           return (
-            <g key={`node-${i}`}>
+            <g
+              key={`node-${i}`}
+              onClick={() => onStepClick?.(i)}
+              style={{ cursor: onStepClick ? "pointer" : "default" }}
+            >
               {/* Arrow between nodes */}
               {i > 0 && (
                 <g>
@@ -51,9 +55,9 @@ export function PipelineDiagram({ nodes, nodeLabels }) {
                 width={NODE_W}
                 height={NODE_H}
                 rx={3}
-                fill="rgba(255,255,255,0.03)"
-                stroke="rgba(255,255,255,0.1)"
-                strokeWidth={1}
+                fill={activeStep === i ? "rgba(0,255,180,0.06)" : "rgba(255,255,255,0.03)"}
+                stroke={activeStep === i ? "#00ffb4" : "rgba(255,255,255,0.1)"}
+                strokeWidth={activeStep === i ? 1.5 : 1}
               />
 
               {/* Node title */}
