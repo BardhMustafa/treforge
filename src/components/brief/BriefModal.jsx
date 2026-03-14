@@ -216,7 +216,7 @@ export function BriefModal() {
                       );
                     })}
                   </div>
-                  {otherSelected && (
+                  {otherSelected && current.key === "projectType" && (
                     <input
                       autoFocus
                       placeholder="Describe your project type..."
