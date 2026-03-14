@@ -12,5 +12,7 @@ export function BriefModalProvider({ children }) {
 }
 
 export function useBriefModal() {
-  return useContext(BriefModalContext);
+  const ctx = useContext(BriefModalContext);
+  if (!ctx) throw new Error("useBriefModal must be used within BriefModalProvider");
+  return ctx;
 }
