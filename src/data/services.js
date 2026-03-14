@@ -30,6 +30,22 @@ export const SERVICES = [
     desc: "Robust pipelines, clean architecture, and real-time data flows that your team can actually rely on.",
     longDesc: "Data pipelines and architecture that your team can rely on. We design for clarity, observability, and scale — so data becomes a asset, not a bottleneck.",
     highlights: ["ETL pipelines", "Real-time flows", "Data modeling", "Monitoring"],
+    products: [
+      {
+        title: "Real-Time Event Pipeline",
+        tagline: "Raw events → cleaned, enriched, queryable in under 5 seconds",
+        visual: "pipeline",
+        nodes: ["REST API / Webhooks", "Kafka", "Stream Processor", "Data Warehouse", "BI / App Layer"],
+        nodeLabels: ["Ingest", "Queue", "Transform", "Store", "Serve"],
+      },
+      {
+        title: "Batch ETL & Data Lake Architecture",
+        tagline: "Legacy sources unified into a single source of truth",
+        visual: "pipeline",
+        nodes: ["Postgres / CSV / ERP", "Ingestion Layer", "Raw Zone", "dbt Transform", "Gold Layer", "Reporting"],
+        nodeLabels: ["Extract", "Load", "Raw", "Transform", "Curated", "Consume"],
+      },
+    ],
   },
   {
     slug: "power-bi-platform",
@@ -38,6 +54,24 @@ export const SERVICES = [
     desc: "Turn raw data into decisions. We build Power BI dashboards that executives actually open and trust.",
     longDesc: "Power BI dashboards and reports that executives actually use. We focus on clarity, actionability, and governance so your data drives decisions.",
     highlights: ["Dashboards", "DAX & modeling", "Governance", "Training"],
+    products: [
+      {
+        title: "Sales & Revenue Dashboard",
+        tagline: "From CRM and ERP exports to a live executive report",
+        visual: "dashboard",
+        nodes: ["Salesforce + ERP", "Power Query ETL", "Star Schema Model", "DAX Measures", "Dashboard"],
+        nodeLabels: ["Source", "ETL", "Model", "Logic", "Report"],
+        kpis: ["$2.4M Revenue", "+18% MoM", "$890K Pipeline"],
+      },
+      {
+        title: "Operational KPIs Dashboard",
+        tagline: "Cross-department metrics unified in one pane of glass",
+        visual: "dashboard",
+        nodes: ["HR + Finance + OPS", "Dataflow", "Composite Model", "Row-Level Security", "Report"],
+        nodeLabels: ["Sources", "Ingest", "Model", "Security", "Serve"],
+        kpis: ["94% SLA", "↓12% Cost", "3 Depts"],
+      },
+    ],
   },
 ];
 
