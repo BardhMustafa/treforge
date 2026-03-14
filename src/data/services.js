@@ -153,7 +153,7 @@ export const SERVICES = [
   {
     slug: "power-bi-platform",
     icon: "◳",
-    title: "Power BI Platform",
+    title: "Power BI",
     desc: "Turn raw data into decisions. We build Power BI dashboards that executives actually open and trust.",
     longDesc: "Power BI dashboards and reports that executives actually use. We focus on clarity, actionability, and governance so your data drives decisions.",
     highlights: ["Dashboards", "DAX & modeling", "Governance", "Training"],
