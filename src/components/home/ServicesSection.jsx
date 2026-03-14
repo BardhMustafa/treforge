@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useIsMobile, useIsSmallScreen } from "../../hooks";
-import { useBriefModal } from "../../context/BriefModalContext";
 import { PAGE_PADDING_X, SECTION_PADDING_Y } from "../../constants/layout";
 import { SectionLabel } from "../ui/SectionLabel";
 import { SectionTitle } from "../ui/SectionTitle";
@@ -11,7 +10,6 @@ export function ServicesSection() {
   const [active, setActive] = useState(null);
   const isMobile = useIsMobile();
   const isSmall = useIsSmallScreen();
-  const { openBrief } = useBriefModal();
   return (
     <section
       id="services"
@@ -35,7 +33,6 @@ export function ServicesSection() {
             onMouseEnter={() => setActive(i)}
             onMouseLeave={() => setActive(null)}
             isSmall={isSmall}
-            onBrief={openBrief}
           />
         ))}
       </div>

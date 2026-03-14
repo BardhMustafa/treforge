@@ -1,18 +1,15 @@
 import { Link } from "react-router-dom";
 
-export function ServiceCard({ service, active, onMouseEnter, onMouseLeave, isSmall, onBrief }) {
+export function ServiceCard({ service, active, onMouseEnter, onMouseLeave, isSmall }) {
   const { slug, icon, title, desc } = service;
   return (
-    <div
-      style={{ display: "flex", flexDirection: "column", position: "relative" }}
+    <Link
+      to={`/services/${slug}`}
+      style={{ textDecoration: "none", color: "inherit", display: "flex", flexDirection: "column" }}
+      data-hover
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
     >
-      <Link
-        to={`/services/${slug}`}
-        style={{ textDecoration: "none", color: "inherit", flex: 1 }}
-        data-hover
-      >
         <div
           style={{
             padding: isSmall ? "28px 24px" : "40px 36px",
@@ -48,29 +45,6 @@ export function ServiceCard({ service, active, onMouseEnter, onMouseLeave, isSma
             EXPLORE →
           </div>
         </div>
-      </Link>
-      <button
-        onClick={onBrief}
-        tabIndex={active ? 0 : -1}
-        style={{
-          background: "rgba(0,255,180,0.06)",
-          border: `1px solid ${active ? "rgba(0,255,180,0.3)" : "rgba(255,255,255,0.06)"}`,
-          borderTop: "none",
-          color: "#00ffb4",
-          padding: "10px 16px",
-          fontFamily: "'Space Mono',monospace",
-          fontSize: 10,
-          letterSpacing: 2,
-          cursor: "pointer",
-          width: "100%",
-          textAlign: "left",
-          opacity: active ? 1 : 0,
-          pointerEvents: active ? "auto" : "none",
-          transition: "all 0.25s",
-        }}
-      >
-        BRIEF US →
-      </button>
-    </div>
+    </Link>
   );
 }
