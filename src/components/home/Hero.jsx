@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useIsMobile, useIsSmallScreen } from "../../hooks";
-import { PAGE_PADDING_X } from "../../constants/layout";
+import { PAGE_PADDING_X, scrollTo } from "../../constants/layout";
 import { ClipBtn } from "../ui/ClipBtn";
 import { GhostBtn } from "../ui/GhostBtn";
 import { useBriefModal } from "../../context/BriefModalContext";
