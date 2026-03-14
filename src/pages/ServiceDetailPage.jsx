@@ -1,17 +1,13 @@
 import { useParams, Link } from "react-router-dom";
 import { getServiceBySlug } from "../data/services";
 import { PAGE_PADDING_X, SECTION_PADDING_Y } from "../constants/layout";
-import { SectionLabel } from "../components/ui/SectionLabel";
-import { ClipBtn } from "../components/ui/ClipBtn";
 import { useIsMobile } from "../hooks";
-import { useBriefModal } from "../context/BriefModalContext";
 import { ProductShowcase } from "../components/services/ProductShowcase";
 
 export function ServiceDetailPage() {
   const { slug } = useParams();
   const service = getServiceBySlug(slug);
   const isMobile = useIsMobile();
-  const { openBrief } = useBriefModal();
 
   if (!service) {
     return (
@@ -59,12 +55,9 @@ export function ServiceDetailPage() {
 
         {/* Hero */}
         <div style={{ marginBottom: 80 }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 16, marginBottom: 24 }}>
-            <SectionLabel>Service Detail</SectionLabel>
-            <span style={{ fontFamily: "'Space Mono',monospace", fontSize: 22, color: "#00ffb4", lineHeight: 1 }}>
-              {icon}
-            </span>
-          </div>
+          <span style={{ fontFamily: "'Space Mono',monospace", fontSize: 22, color: "#00ffb4", lineHeight: 1, display: "block", marginBottom: 20 }}>
+            {icon}
+          </span>
 
           <h1
             style={{
@@ -72,7 +65,7 @@ export function ServiceDetailPage() {
               fontSize: "clamp(48px, 8vw, 96px)",
               fontWeight: 900,
               color: "#fff",
-              margin: "0 0 32px",
+              margin: "0 0 28px",
               lineHeight: 1,
               letterSpacing: -2,
             }}
@@ -80,28 +73,18 @@ export function ServiceDetailPage() {
             {title}
           </h1>
 
-          <div style={{
-            display: "grid",
-            gridTemplateColumns: isMobile ? "1fr" : "1fr auto",
-            gap: isMobile ? 24 : 80,
-            alignItems: "end",
-          }}>
-            <p
-              style={{
-                fontFamily: "'Space Mono',monospace",
-                fontSize: 14,
-                color: "rgba(255,255,255,0.5)",
-                lineHeight: 1.9,
-                margin: 0,
-                maxWidth: 560,
-              }}
-            >
-              {longDesc}
-            </p>
-            <ClipBtn as="button" onClick={openBrief} small>
-              Get Started →
-            </ClipBtn>
-          </div>
+          <p
+            style={{
+              fontFamily: "'Space Mono',monospace",
+              fontSize: 14,
+              color: "rgba(255,255,255,0.5)",
+              lineHeight: 1.9,
+              margin: 0,
+              maxWidth: 560,
+            }}
+          >
+            {longDesc}
+          </p>
         </div>
 
         {highlights?.length > 0 && (
