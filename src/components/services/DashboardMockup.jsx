@@ -4,7 +4,7 @@
 
 import { PipelineDiagram } from "./PipelineDiagram";
 
-export function DashboardMockup({ nodes = [], nodeLabels = [], kpis = [] }) {
+export function DashboardMockup({ nodes = [], nodeLabels = [], kpis = [], activeStep = null, onStepClick }) {
   return (
     <div
       style={{
@@ -59,7 +59,7 @@ export function DashboardMockup({ nodes = [], nodeLabels = [], kpis = [] }) {
           >
             DATA_FLOW
           </div>
-          <PipelineDiagram nodes={nodes} nodeLabels={nodeLabels} />
+          <PipelineDiagram nodes={nodes} nodeLabels={nodeLabels} activeStep={activeStep} onStepClick={onStepClick} />
         </div>
 
         {/* KPI tiles */}
