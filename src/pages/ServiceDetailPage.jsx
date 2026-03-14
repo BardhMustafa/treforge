@@ -4,6 +4,7 @@ import { PAGE_PADDING_X, SECTION_PADDING_Y } from "../constants/layout";
 import { SectionLabel } from "../components/ui/SectionLabel";
 import { ClipBtn } from "../components/ui/ClipBtn";
 import { useIsMobile } from "../hooks";
+import { ProductShowcase } from "../components/services/ProductShowcase";
 
 export function ServiceDetailPage() {
   const { slug } = useParams();
@@ -151,6 +152,40 @@ export function ServiceDetailPage() {
                   <span style={{ color: "#00ffb4" }}>◇</span>
                   {h}
                 </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {service.products?.length > 0 && (
+          <div
+            style={{
+              marginTop: 80,
+              padding: "40px 0",
+              borderTop: "1px solid rgba(255,255,255,0.06)",
+            }}
+          >
+            <div
+              style={{
+                fontFamily: "'Space Mono', monospace",
+                fontSize: 10,
+                color: "#00ffb4",
+                letterSpacing: 6,
+                textTransform: "uppercase",
+                marginBottom: 40,
+              }}
+            >
+              PRODUCTS_WE_SHIP
+            </div>
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: isMobile ? "1fr" : "repeat(2, 1fr)",
+                gap: 24,
+              }}
+            >
+              {service.products.map((product, i) => (
+                <ProductShowcase key={product.title} product={product} index={i} />
               ))}
             </div>
           </div>
