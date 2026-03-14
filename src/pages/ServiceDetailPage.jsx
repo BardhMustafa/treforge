@@ -4,12 +4,14 @@ import { PAGE_PADDING_X, SECTION_PADDING_Y } from "../constants/layout";
 import { SectionLabel } from "../components/ui/SectionLabel";
 import { ClipBtn } from "../components/ui/ClipBtn";
 import { useIsMobile } from "../hooks";
+import { useBriefModal } from "../context/BriefModalContext";
 import { ProductShowcase } from "../components/services/ProductShowcase";
 
 export function ServiceDetailPage() {
   const { slug } = useParams();
   const service = getServiceBySlug(slug);
   const isMobile = useIsMobile();
+  const { openBrief } = useBriefModal();
 
   if (!service) {
     return (
@@ -101,7 +103,7 @@ export function ServiceDetailPage() {
             >
               {longDesc}
             </p>
-            <ClipBtn as={Link} to="/#contact" small>
+            <ClipBtn as="button" onClick={openBrief} small>
               Get Started →
             </ClipBtn>
           </div>
