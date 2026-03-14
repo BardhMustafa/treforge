@@ -1,11 +1,9 @@
 import { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
-import { scrollTo } from "../../constants/layout";
+import { useBriefModal } from "../../context/BriefModalContext";
 
 export function TalkBtn({ children }) {
   const [hov, setHov] = useState(false);
-  const location = useLocation();
-  const isHome = location.pathname === "/";
+  const { openBrief } = useBriefModal();
   const style = {
     background: hov ? "#00ffb4" : "transparent",
     border: "1.5px solid #00ffb4",
@@ -18,23 +16,15 @@ export function TalkBtn({ children }) {
     textTransform: "uppercase",
     transition: "all 0.2s",
     whiteSpace: "nowrap",
-    textDecoration: "none",
-  };
-  const handleClick = (e) => {
-    if (isHome) {
-      e.preventDefault();
-      scrollTo("contact");
-    }
   };
   return (
-    <Link
-      to="/#contact"
+    <button
       style={style}
       onMouseEnter={() => setHov(true)}
       onMouseLeave={() => setHov(false)}
-      onClick={handleClick}
+      onClick={openBrief}
     >
       {children}
-    </Link>
+    </button>
   );
 }
