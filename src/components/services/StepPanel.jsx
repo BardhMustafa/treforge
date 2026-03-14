@@ -45,7 +45,7 @@ export function StepPanel({ step, index }) {
 
       {/* Tech bullets */}
       <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-        {step.tech.map((item) => (
+        {(step.tech ?? []).map((item) => (
           <div
             key={item}
             style={{
