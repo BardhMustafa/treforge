@@ -88,10 +88,10 @@ export function BriefModal() {
   // Close on ESC
   useEffect(() => {
     if (!open) return;
-    const handler = (e) => { if (e.key === "Escape") handleClose(); };
+    const handler = (e) => { if (e.key === "Escape") closeBrief(); };
     window.addEventListener("keydown", handler);
     return () => window.removeEventListener("keydown", handler);
-  }, [open]);
+  }, [open, closeBrief]);
 
   // Lock body scroll when open
   useEffect(() => {
@@ -108,7 +108,7 @@ export function BriefModal() {
     const s = STEPS[step];
     if (s.type === "select") return !!form[s.key];
     if (s.type === "textarea") return form[s.key].trim().length > 0;
-    if (s.type === "contact") return form.name.trim() && form.email.trim();
+    if (s.type === "contact") return form.name.trim() && form.email.trim() && form.email.includes("@");
     return true;
   };
 
@@ -144,6 +144,7 @@ export function BriefModal() {
         <div style={{ padding: "clamp(28px, 5vw, 44px)" }}>
           {/* Close button */}
           <button
+            aria-label="Close"
             onClick={handleClose}
             style={{ position: "absolute", top: 20, right: 20, background: "none", border: "none", color: "rgba(255,255,255,0.4)", fontSize: 20, cursor: "pointer", lineHeight: 1, padding: 4 }}
           >
