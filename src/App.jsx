@@ -40,6 +40,14 @@ function AppInner() {
         ::-webkit-scrollbar-track { background: #05080e; }
         ::-webkit-scrollbar-thumb { background: rgba(0,255,180,0.3); border-radius: 2px; }
         @keyframes spin { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+        @keyframes heroReveal {
+          from { opacity: 0; transform: translateY(18px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        .hero-reveal { animation: heroReveal 0.75s cubic-bezier(0.22, 1, 0.36, 1) both; }
+        @media (prefers-reduced-motion: reduce) {
+          .hero-reveal { animation: none; }
+        }
         ::placeholder { color: rgba(255,255,255,0.2); }
         input, textarea { color-scheme: dark; }
         @media (max-width: 480px) {
