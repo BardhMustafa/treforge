@@ -27,13 +27,13 @@ export const CLIENTS = [
     screenshot: '/clients/gazi.jpg',
   },
   {
-    slug: 'elia-partnerships',
-    name: 'Elia Partnerships',
-    url: 'https://www.elia-partnerships.com',
-    tag: 'Agency',
+    slug: 'hm-home',
+    name: 'HM Home',
+    url: 'https://hmhomeks.com',
+    tag: 'E-commerce',
     summary:
-      'Elia Partnerships is an agency connecting services across the EU and UAE with Kosovo. We delivered a professional site and tools to support their cross-border reach.',
-    screenshot: '/clients/elia-partnerships.jpg',
+      'HM Home is a furniture shop in Prizren, Kosovo. We built its e-commerce storefront and an admin panel for managing products and customer orders.',
+    screenshot: '/clients/hm-home.jpg',
   },
 ];
 

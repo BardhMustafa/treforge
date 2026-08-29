@@ -7,7 +7,7 @@ Add website screenshots here so they appear on the Clients section and detail pa
 - `pronex.jpg` — Pronex (pronex-ks.com)
 - `lial-hc.jpg` — Lial HC (lialhc.com)
 - `gazi.jpg` — Gazi (gazi-ks.com)
-- `elia-partnerships.jpg` — Elia Partnerships (elia-partnerships.com)
+- `hm-home.jpg` — HM Home (hmhomeks.com)
 
 Use `.jpg`, `.jpeg`, or `.png`. Until these files exist, the UI shows a “Screenshot” placeholder.
 
