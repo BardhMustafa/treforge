@@ -1,11 +1,9 @@
-import { useState, useEffect } from "react";
 import { useIsMobile, useIsSmallScreen } from "../../hooks";
 import { PAGE_PADDING_X, scrollTo } from "../../constants/layout";
 import { ClipBtn } from "../ui/ClipBtn";
 import { GhostBtn } from "../ui/GhostBtn";
 import { useBriefModal } from "../../context/BriefModalContext";
 
-const SCRAMBLE_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 const HERO_WORD = "AI AGENTS THAT MOVE WORK FORWARD.";
 const TITLE_BREAK = "AI AGENTS THAT".length;
 
@@ -140,36 +138,9 @@ function AgentWorkflowPreview() {
 }
 
 export function Hero() {
-  const [revealed, setRevealed] = useState(0);
-  const [, forceUpdate] = useState(0);
   const isMobile = useIsMobile();
   const isSmall = useIsSmallScreen();
   const { openBrief } = useBriefModal();
-
-  useEffect(() => {
-    const duration = 1800;
-    const start = Date.now();
-    let raf;
-    const tick = () => {
-      const progress = Math.min((Date.now() - start) / duration, 1);
-      const r = Math.floor(progress * HERO_WORD.length);
-      setRevealed(r);
-      if (r < HERO_WORD.length) {
-        forceUpdate((n) => n + 1);
-        raf = requestAnimationFrame(tick);
-      }
-    };
-    raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
-  }, []);
-
-  const display = HERO_WORD.split("")
-    .map((c, i) =>
-      i < revealed || c === " "
-        ? c
-        : SCRAMBLE_CHARS[Math.floor(Math.random() * SCRAMBLE_CHARS.length)]
-    )
-    .join("");
 
   return (
     <section
@@ -226,6 +197,7 @@ export function Hero() {
         </div>
 
         <h1
+          className="hero-reveal"
           style={{
             fontFamily: "'Orbitron',monospace",
             fontSize: isMobile ? "clamp(35px,9.5vw,58px)" : "clamp(44px, min(5.4vw, 8vh), 72px)",
@@ -237,9 +209,9 @@ export function Hero() {
             userSelect: "none",
           }}
         >
-          <span style={{ display: "block" }}>{display.slice(0, TITLE_BREAK)}</span>
+          <span style={{ display: "block" }}>{HERO_WORD.slice(0, TITLE_BREAK)}</span>
           <span style={{ display: "block", color: "#00ffb4" }}>
-            {display.slice(TITLE_BREAK + 1)}
+            {HERO_WORD.slice(TITLE_BREAK + 1)}
           </span>
         </h1>
 
