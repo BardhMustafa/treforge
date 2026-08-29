@@ -9,6 +9,15 @@ export const CLIENTS = [
     screenshot: '/clients/pronex.jpg',
   },
   {
+    slug: 'hm-home',
+    name: 'HM Home',
+    url: 'https://hmhomeks.com',
+    tag: 'E-commerce',
+    summary:
+      'HM Home is a furniture shop in Prizren, Kosovo. We built its e-commerce storefront and an admin panel for managing products and customer orders.',
+    screenshot: '/clients/hm-home.jpg',
+  },
+  {
     slug: 'lial-hc',
     name: 'Lial HC',
     url: 'https://www.lialhc.com',
@@ -25,15 +34,6 @@ export const CLIENTS = [
     summary:
       'Gazi is a window, glass, and door manufacturing company. We built a scalable web platform and digital tools to support their operations.',
     screenshot: '/clients/gazi.jpg',
-  },
-  {
-    slug: 'hm-home',
-    name: 'HM Home',
-    url: 'https://hmhomeks.com',
-    tag: 'E-commerce',
-    summary:
-      'HM Home is a furniture shop in Prizren, Kosovo. We built its e-commerce storefront and an admin panel for managing products and customer orders.',
-    screenshot: '/clients/hm-home.jpg',
   },
 ];
 
