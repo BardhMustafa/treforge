@@ -18,10 +18,66 @@ export const SERVICES = [
   {
     slug: "ai-integration",
     icon: "⬡",
-    title: "AI Integration",
-    desc: "Embed intelligence into your product. LLMs, automation, smart workflows — we make AI work for your business.",
-    longDesc: "We integrate LLMs, automation, and smart workflows into your product. From chatbots to document analysis, we make AI practical and deployable — not just demos.",
-    highlights: ["LLM integration", "RAG & embeddings", "Workflow automation", "API design"],
+    title: "AI Agents",
+    desc: "Purpose-built agents connected to your product, tools, and data — secure, observable, and ready for real workflows.",
+    longDesc: "We design AI agents around a specific business decision or workflow, then connect them to the right data and product experience. Using Amazon Bedrock AgentCore, we can move from a focused prototype to a secure, observable agent that runs inside the tools your team and customers already use.",
+    highlights: ["Amazon Bedrock AgentCore", "Agent workflows", "Tool & data integration", "Evaluation & observability"],
+    products: [
+      {
+        title: "AI Çmimi · Pronex",
+        tagline: "Property details → local market context → an explainable asking-price recommendation",
+        visual: "pipeline",
+        nodes: ["Pronex Listing", "AgentCore Runtime", "Market Data Tools", "Pricing Logic", "Recommendation"],
+        nodeLabels: ["Input", "Orchestrate", "Ground", "Evaluate", "Assist"],
+        steps: [
+          {
+            label: "Input",
+            benefit: "Sellers get pricing help without leaving the property-listing flow.",
+            tech: [
+              "Collects city, neighborhood, property type, surface area, and asking price",
+              "Validates required inputs before starting the pricing check",
+              "Supports seller and internal administrator workflows",
+            ],
+          },
+          {
+            label: "Orchestrate",
+            benefit: "The pricing workflow runs as a focused agent rather than a disconnected demo.",
+            tech: [
+              "Amazon Bedrock AgentCore Runtime hosts and isolates the agent workflow",
+              "A narrow tool set keeps the agent focused on property-pricing decisions",
+              "Execution traces make recommendations easier to monitor and improve",
+            ],
+          },
+          {
+            label: "Ground",
+            benefit: "Recommendations use the most relevant Kosovo market context available for the property.",
+            tech: [
+              "Prioritizes verified neighborhood price-per-m² ranges",
+              "Falls back to researched city ranges when neighborhood data is unavailable",
+              "Clearly labels heuristic guidance when market coverage is limited",
+            ],
+          },
+          {
+            label: "Evaluate",
+            benefit: "The same property inputs produce stable, understandable pricing guidance.",
+            tech: [
+              "Normalizes m², ari, and hectare surface units before comparison",
+              "Compares the asking price per m² with the selected market range",
+              "Deterministic safeguards prevent repeated checks from drifting the price",
+            ],
+          },
+          {
+            label: "Assist",
+            benefit: "Sellers receive a clear recommendation while retaining control of the final price.",
+            tech: [
+              "Explains whether the listing appears underpriced, competitive, or overpriced",
+              "Shows confidence-aware context alongside the suggested price",
+              "Applies the recommendation to the listing form with one click",
+            ],
+          },
+        ],
+      },
+    ],
   },
   {
     slug: "data-engineering",
