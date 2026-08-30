@@ -11,8 +11,8 @@ export const PROCESS = [
   },
   {
     num: "03",
-    title: "Build Fast",
-    body: "AI-accelerated development. MVP in days. Iterate in hours. Ship before the competition blinks.",
+    title: "Build & Validate",
+    body: "Start with a focused prototype. Review working progress together, test the essentials, and agree on what is ready to launch.",
   },
   {
     num: "04",

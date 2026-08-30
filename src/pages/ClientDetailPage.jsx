@@ -11,6 +11,7 @@ export function ClientDetailPage() {
   const { slug } = useParams();
   const client = getClientBySlug(slug);
   const isMobile = useIsMobile();
+  const [failedScreenshot, setFailedScreenshot] = useState(null);
 
   if (!client) {
     return (
@@ -28,11 +29,10 @@ export function ClientDetailPage() {
   }
 
   const { name, url, tag, summary, screenshot, location, exportMarket } = client;
-  const [imgError, setImgError] = useState(false);
-  const showScreenshot = screenshot && !imgError;
+  const showScreenshot = screenshot && failedScreenshot !== screenshot;
 
   return (
-    <main style={{ position: "relative", zIndex: 1 }}>
+    <main className="marketing-page" style={{ position: "relative", zIndex: 1 }}>
       <section
         style={{
           padding: `${SECTION_PADDING_Y} ${PAGE_PADDING_X}`,
@@ -57,7 +57,7 @@ export function ClientDetailPage() {
           onMouseEnter={(e) => (e.target.style.opacity = 1)}
           onMouseLeave={(e) => (e.target.style.opacity = 0.6)}
         >
-          ← BACK_TO_CLIENTS
+          ← Back to selected work
         </Link>
 
         <div style={{
@@ -110,14 +110,13 @@ export function ClientDetailPage() {
             >
               {summary}
             </p>
-            <a
+            <ClipBtn as="a" small
               href={url}
               target="_blank"
               rel="noopener noreferrer"
-              style={{ textDecoration: "none" }}
             >
-              <ClipBtn small>Visit Project ↗</ClipBtn>
-            </a>
+              Visit Project ↗
+            </ClipBtn>
           </div>
         </div>
 
@@ -149,13 +148,12 @@ export function ClientDetailPage() {
             <img
               src={screenshot}
               alt={`${name} website screenshot`}
-              onError={() => setImgError(true)}
+              onError={() => setFailedScreenshot(screenshot)}
               style={{
                 width: "100%",
                 height: "auto",
                 display: "block",
                 borderRadius: 6,
-                filter: "contrast(1.05) brightness(0.95)",
                 zIndex: 1,
               }}
             />
@@ -179,6 +177,12 @@ export function ClientDetailPage() {
             PROJECT_PREVIEW_NOT_FOUND
           </div>
         )}
+        {client.story && <div className="story-grid">
+          <article><h2>The business need</h2><p>{client.story.context}</p></article>
+          <article><h2>What we built</h2><ul>{client.story.scope.map(item => <li key={item}>{item}</li>)}</ul></article>
+          <article><h2>How it fits together</h2><p>{client.story.workflow}</p></article>
+        </div>}
+        <div className="project-next"><div><h2>Something similar in mind?</h2><p>Tell us what your customers or team need to do.</p></div><Link className="text-action" to="/#contact">Discuss your project ↗</Link></div>
       </section>
     </main>
   );

@@ -4,6 +4,12 @@ export const CLIENTS = [
     name: 'Pronex',
     url: 'https://www.pronex-ks.com',
     tag: 'Real Estate',
+    delivered: 'A property platform, internal tools, and a pricing-assistance prototype.',
+    story: {
+      context: 'A real estate agency needs a clear public presence and useful tools behind the listings. Our work for Pronex connects those customer-facing and internal needs.',
+      scope: ['Real estate web presence', 'Internal business tools', 'AI Çmimi pricing-assistance prototype'],
+      workflow: 'AI Çmimi is a rules-based prototype that helps put an asking price in context. An AWS AgentCore workflow is a proposed next step, not a deployed AI capability.',
+    },
     location: 'Prizren, Kosova',
     summary:
       'Pronex is a real estate agency in Prizren, Kosova. We delivered a modern web presence and internal tools to support their growth.',
@@ -14,6 +20,12 @@ export const CLIENTS = [
     name: 'HM Home',
     url: 'https://hmhomeks.com',
     tag: 'E-commerce',
+    delivered: 'Furniture e-commerce, with product and order management in one admin panel.',
+    story: {
+      context: 'HM Home needed more than an online showcase: a furniture storefront for shoppers, paired with a practical way for the team to manage its catalog and incoming orders.',
+      scope: ['Customer-facing furniture storefront', 'Admin panel for managing products', 'Customer order management'],
+      workflow: 'Customers explore the furniture collection through the storefront. Behind it, the HM Home team manages products and customer orders through its admin panel.',
+    },
     location: 'Prizren, Kosova',
     summary:
       'HM Home is a furniture shop in Prizren, Kosova. We built its e-commerce storefront and an admin panel for managing products and customer orders.',
@@ -24,6 +36,7 @@ export const CLIENTS = [
     name: 'Lial HC',
     url: 'https://www.lialhc.com',
     tag: 'Manufacturing',
+    delivered: 'A digital presence for a door and window manufacturer serving EU markets.',
     location: 'Viti, Kosova',
     exportMarket: 'EU',
     summary:
@@ -32,6 +45,7 @@ export const CLIENTS = [
   },
   {
     slug: 'gazi',
+    delivered: 'A web platform presenting windows, glass, and doors to local and EU customers.',
     name: 'Gazi',
     url: 'https://www.gazi-rks.com',
     tag: 'Manufacturing',

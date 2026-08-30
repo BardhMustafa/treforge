@@ -44,7 +44,7 @@ export function DashboardMockup({ nodes = [], nodeLabels = [], kpis = [], active
         </div>
       </div>
 
-      <div style={{ padding: "32px 32px 36px" }}>
+      <div style={{ padding: "clamp(16px, 3vw, 32px)" }}>
         {/* Flow diagram */}
         <div style={{ marginBottom: 24 }}>
           <div
@@ -80,7 +80,7 @@ export function DashboardMockup({ nodes = [], nodeLabels = [], kpis = [], active
             <div
               style={{
                 display: "grid",
-                gridTemplateColumns: `repeat(${kpis.length}, 1fr)`,
+                gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 150px), 1fr))",
                 gap: 10,
               }}
             >
@@ -102,7 +102,7 @@ export function DashboardMockup({ nodes = [], nodeLabels = [], kpis = [], active
                       fontWeight: 700,
                       color: "#00ffb4",
                       marginBottom: 4,
-                      whiteSpace: "nowrap",
+                      overflowWrap: "anywhere",
                     }}
                   >
                     {kpi}

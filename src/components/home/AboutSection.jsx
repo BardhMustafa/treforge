@@ -43,9 +43,9 @@ export function AboutSection() {
               margin: "0 0 18px",
             }}
           >
-            Most agencies take your brief and disappear into a room. We don't. We
-            sit at the table with you — challenging assumptions, sharpening the
-            idea, and making sure what we build actually solves the problem.
+            We start with your customers, your team, and the problem you want to
+            solve. Together, we define the scope, priorities, and what a successful
+            first release should do.
           </p>
           <p
             style={{

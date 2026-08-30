@@ -23,6 +23,7 @@ import { AdminDraftsPage } from "./pages/admin/AdminDraftsPage";
 import { OfferPage } from "./pages/OfferPage";
 import { BriefModalProvider } from "./context/BriefModalContext";
 import { BriefModal } from "./components/brief/BriefModal";
+import "./styles/marketing.css";
 
 function AppInner() {
   const scrollY = useScrollY();
@@ -55,8 +56,9 @@ function AppInner() {
         }
       `}</style>
 
+      <div className={isAdmin ? undefined : "public-site"}>
       <ScrollToTop />
-      <GridBackground />
+      <GridBackground subdued={!isAdmin} />
       {!isAdmin && <Navbar scrollY={scrollY} />}
       <Routes>
         <Route path="/" element={<HomePage />} />
@@ -80,6 +82,7 @@ function AppInner() {
       </Routes>
       {!isAdmin && <Footer />}
       <BriefModal />
+      </div>
     </BriefModalProvider>
   );
 }

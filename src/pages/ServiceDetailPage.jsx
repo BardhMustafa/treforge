@@ -1,13 +1,16 @@
 import { useParams, Link } from "react-router-dom";
 import { getServiceBySlug } from "../data/services";
 import { PAGE_PADDING_X, SECTION_PADDING_Y } from "../constants/layout";
-import { useIsMobile } from "../hooks";
+import { ClipBtn } from "../components/ui/ClipBtn";
+import { SERVICE_OFFERS } from "../data/serviceOffers";
+import { useBriefModal } from "../context/BriefModalContext";
 import { ProductShowcase } from "../components/services/ProductShowcase";
 
 export function ServiceDetailPage() {
   const { slug } = useParams();
   const service = getServiceBySlug(slug);
-  const isMobile = useIsMobile();
+  const { openBrief } = useBriefModal();
+  const offer = SERVICE_OFFERS[slug];
 
   if (!service) {
     return (
@@ -27,7 +30,7 @@ export function ServiceDetailPage() {
   const { icon, title, longDesc, highlights } = service;
 
   return (
-    <main style={{ position: "relative", zIndex: 1 }}>
+    <main className="marketing-page" style={{ position: "relative", zIndex: 1 }}>
       <section
         style={{
           padding: `${SECTION_PADDING_Y} ${PAGE_PADDING_X}`,
@@ -50,7 +53,7 @@ export function ServiceDetailPage() {
           onMouseEnter={(e) => (e.target.style.opacity = 1)}
           onMouseLeave={(e) => (e.target.style.opacity = 0.6)}
         >
-          ← BACK_TO_SERVICES
+          ← Back to services
         </Link>
 
         {/* Hero */}
@@ -61,8 +64,8 @@ export function ServiceDetailPage() {
 
           <h1
             style={{
-              fontFamily: "'Orbitron',monospace",
-              fontSize: "clamp(48px, 8vw, 96px)",
+              fontFamily: "'Orbitron',sans-serif",
+              fontSize: "clamp(30px, 6vw, 80px)",
               fontWeight: 900,
               color: "#fff",
               margin: "0 0 28px",
@@ -87,6 +90,12 @@ export function ServiceDetailPage() {
           </p>
         </div>
 
+        {offer && <div className="service-deliverables">
+          <h2>What we can build together</h2>
+          <p className="section-intro">We agree on scope and priorities first. A typical engagement can include:</p>
+          <ul>{offer.deliverables.map(item => <li key={item}>{item}</li>)}</ul>
+          {offer.related && <Link className="text-action" to={offer.related.href}>{offer.related.label} ↗</Link>}
+        </div>}
         {highlights?.length > 0 && (
           <div style={{
             padding: "32px 0",
@@ -103,7 +112,7 @@ export function ServiceDetailPage() {
                 opacity: 0.6,
               }}
             >
-              CORE_CAPABILITIES
+              Tools & capabilities
             </div>
             <div style={{ display: "flex", flexWrap: "wrap", gap: 10 }}>
               {highlights.map((h) => (
@@ -146,7 +155,7 @@ export function ServiceDetailPage() {
                 marginBottom: 40,
               }}
             >
-              PRODUCTS_WE_SHIP
+              {slug === 'ai-integration' ? 'Prototype walkthrough' : 'Illustrative solution concepts'}
             </div>
             <div
               style={{
@@ -161,6 +170,7 @@ export function ServiceDetailPage() {
             </div>
           </div>
         )}
+        <div className="project-next"><div><h2>Start with the problem.</h2><p>Tell us what you want to improve. We’ll help define the next step.</p></div><button className="primary-action" onClick={openBrief}>Discuss your project ↗</button></div>
       </section>
     </main>
   );

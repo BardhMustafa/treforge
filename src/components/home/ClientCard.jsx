@@ -1,16 +1,15 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { useIsSmallScreen } from "../../hooks";
 import { ClientLocation } from "../clients/ClientLocation";
 
-export function ClientCard({ name, url, tag, slug, screenshot, location, exportMarket }) {
+export function ClientCard({ name, tag, slug, screenshot, location, exportMarket, delivered }) {
   const [hov, setHov] = useState(false);
   const [imgError, setImgError] = useState(false);
-  const isSmall = useIsSmallScreen();
   const showScreenshot = screenshot && !imgError;
 
   return (
     <Link
+      className="client-card"
       to={`/clients/${slug}`}
       style={{
         display: "flex",
@@ -43,7 +42,7 @@ export function ClientCard({ name, url, tag, slug, screenshot, location, exportM
               display: "block",
               transition: "transform 0.5s, opacity 0.5s",
               transform: hov ? "scale(1.05)" : "scale(1)",
-              opacity: hov ? 1 : 0.75,
+              opacity: 1,
             }}
           />
           <div style={{
@@ -95,13 +94,13 @@ export function ClientCard({ name, url, tag, slug, screenshot, location, exportM
           zIndex: 2,
         }}
       />
-      <div style={{ padding: isSmall ? "20px" : "28px", flex: 1, display: "flex", flexDirection: "column" }}>
+      <div style={{ padding: "20px", flex: 1, display: "flex", flexDirection: "column" }}>
         <div
           style={{
             fontFamily: "'Space Mono',monospace",
             fontSize: 9,
             color: hov ? "#00ffb4" : "rgba(0,255,180,0.7)",
-            letterSpacing: 4,
+            letterSpacing: 2,
             textTransform: "uppercase",
             marginBottom: 8,
             transition: "color 0.3s",
@@ -115,20 +114,21 @@ export function ClientCard({ name, url, tag, slug, screenshot, location, exportM
             fontSize: 20,
             fontWeight: 700,
             color: "#fff",
-            marginBottom: 16,
+            marginBottom: 12,
             letterSpacing: 1,
           }}
         >
           {name}
         </div>
         <ClientLocation location={location} exportMarket={exportMarket} />
+        <p style={{ marginTop: 14, marginBottom: 4 }}>{delivered}</p>
         <div
           style={{
             marginTop: "auto",
             paddingTop: 16,
             fontFamily: "'Space Mono',monospace",
             fontSize: 10,
-            color: hov ? "#00ffb4" : "rgba(255,255,255,0.35)",
+            color: hov ? "#00ffb4" : "rgba(255,255,255,0.7)",
             letterSpacing: 2,
             transition: "all 0.3s",
             display: "flex",
@@ -136,7 +136,7 @@ export function ClientCard({ name, url, tag, slug, screenshot, location, exportM
             gap: 8,
           }}
         >
-          VIEW_DETAILS <span style={{ transform: hov ? "translateX(4px)" : "none", transition: "transform 0.3s" }}>→</span>
+          View project <span style={{ transform: hov ? "translateX(4px)" : "none", transition: "transform 0.3s" }}>→</span>
         </div>
       </div>
     </Link>

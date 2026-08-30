@@ -8,12 +8,12 @@ import { AIAgentsSpotlight } from "../components/home/AIAgentsSpotlight";
 
 export function HomePage() {
   return (
-    <main style={{ position: "relative", zIndex: 1 }}>
+    <main className="marketing-page" style={{ position: "relative", zIndex: 1 }}>
       <Hero />
       <AIAgentsSpotlight />
+      <ClientsSection />
       <ServicesSection />
       <AboutSection />
-      <ClientsSection />
       <LatestPostsSection />
       <ContactSection />
     </main>

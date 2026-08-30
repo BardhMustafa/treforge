@@ -33,8 +33,8 @@ export function ProcessCard({ num, title, body }) {
       <div>
         <div
           style={{
-            fontFamily: "'Orbitron',monospace",
-            fontSize: 13,
+            fontFamily: "'Orbitron',sans-serif",
+            fontSize: 16,
             fontWeight: 700,
             color: "#fff",
             marginBottom: 8,
@@ -44,9 +44,9 @@ export function ProcessCard({ num, title, body }) {
         </div>
         <div
           style={{
-            fontFamily: "'Space Mono',monospace",
-            fontSize: 12,
-            color: "rgba(255,255,255,0.42)",
+            fontFamily: "'Poppins',Arial,sans-serif",
+            fontSize: 15,
+            color: "#aeb8c4",
             lineHeight: 1.75,
           }}
         >

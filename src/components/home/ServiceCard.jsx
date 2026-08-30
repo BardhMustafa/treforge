@@ -35,14 +35,14 @@ export function ServiceCard({ service, active, onMouseEnter, onMouseLeave, isSma
           <div style={{ fontFamily: "'Space Mono',monospace", fontSize: 32, color: "#00ffb4", marginBottom: 22, transition: "transform 0.25s", transform: active ? "scale(1.12)" : "scale(1)", display: "inline-block" }}>
             {icon}
           </div>
-          <h3 style={{ fontFamily: "'Orbitron',monospace", fontSize: 15, fontWeight: 700, color: "#fff", margin: "0 0 14px", letterSpacing: 1 }}>
+          <h3 style={{ fontFamily: "'Orbitron',sans-serif", fontSize: 20, fontWeight: 700, color: "#fff", margin: "0 0 14px" }}>
             {title}
           </h3>
           <p style={{ fontFamily: "'Space Mono',monospace", fontSize: 12, color: "rgba(255,255,255,0.48)", lineHeight: 1.85, margin: 0 }}>
             {desc}
           </p>
-          <div style={{ marginTop: "auto", paddingTop: 28, fontFamily: "'Space Mono',monospace", fontSize: 10, color: "#00ffb4", letterSpacing: 3, opacity: active ? 1 : 0, transition: "opacity 0.25s" }}>
-            EXPLORE →
+          <div style={{ marginTop: "auto", paddingTop: 28, fontFamily: "'Poppins',Arial,sans-serif", fontSize: 13, color: "#00ffb4" }}>
+            Explore service →
           </div>
         </div>
     </Link>

@@ -42,7 +42,8 @@ export function ProductShowcase({ product, index }) {
   return (
     <div
       style={{
-        padding: "48px",
+        padding: "clamp(20px, 4vw, 48px)",
+        minWidth: 0,
         border: "1px solid rgba(255,255,255,0.05)",
         background: "rgba(255,255,255,0.01)",
         borderRadius: 4,
@@ -61,7 +62,7 @@ export function ProductShowcase({ product, index }) {
             opacity: 0.6,
           }}
         >
-          PRODUCT_{String(index + 1).padStart(2, "0")}
+          {product.status || `Illustrative concept ${String(index + 1).padStart(2, "0")}`}
         </div>
         <h3
           style={{
@@ -88,6 +89,7 @@ export function ProductShowcase({ product, index }) {
         </p>
       </div>
 
+      {!product.status && <p style={{ marginBottom: 24 }}>Example architecture and sample figures—not measured client results. Targets and implementation depend on the agreed scope.</p>}
       {/* Diagram */}
       {visual === "dashboard" ? (
         <DashboardMockup

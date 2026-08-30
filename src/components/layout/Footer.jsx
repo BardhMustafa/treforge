@@ -42,7 +42,7 @@ export function Footer() {
           letterSpacing: 2,
         }}
       >
-        © 2025 TREFORGE. DRIVEN BY AI.
+        © {new Date().getFullYear()} TREFORGE.
       </div>
     </footer>
   );

@@ -16,7 +16,8 @@ export function ServicesSection() {
       style={{ padding: `${SECTION_PADDING_Y} ${PAGE_PADDING_X}` }}
     >
       <SectionLabel>What We Do</SectionLabel>
-      <SectionTitle>SERVICES</SectionTitle>
+      <SectionTitle>What does your business need?</SectionTitle>
+      <p className="section-intro">A better customer experience, less manual work, or clearer data. We help you choose the right starting point.</p>
       <div
         style={{
           display: "grid",
