@@ -56,9 +56,13 @@
 .marketing-page .client-card p { font-size: 14px !important; line-height: 1.65 !important; }
 @media (max-width: 1023px) { .client-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 599px) { .client-grid { grid-template-columns: 1fr; } }
-.testimonial-carousel { margin-top: 40px; max-width: 900px; }
-.testimonial-card { position: relative; display: flex; flex-direction: column; border: 1px solid #ffffff10; background: rgba(255,255,255,0.02); border-radius: 2px; padding: clamp(24px, 3vw, 40px); transition: border-color .3s, background .3s; }
-.testimonial-slide { min-height: 300px; justify-content: center; }
+.testimonials-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: clamp(40px, 6vw, 90px); align-items: center; }
+.testimonials-intro .section-intro { margin-bottom: 0; }
+.testimonial-carousel { min-width: 0; }
+.testimonial-stage { display: grid; }
+.testimonial-stage > .testimonial-slide { grid-area: 1 / 1; opacity: 0; transition: opacity .45s ease; pointer-events: none; }
+.testimonial-stage > .testimonial-slide.is-active { opacity: 1; pointer-events: auto; }
+.testimonial-card { position: relative; display: flex; flex-direction: column; border: 1px solid #ffffff10; background: rgba(255,255,255,0.02); border-radius: 2px; padding: clamp(24px, 3vw, 40px); }
 .marketing-page .testimonial-slide blockquote { font-size: clamp(17px, 1.7vw, 20px); }
 .testimonial-controls { display: flex; align-items: center; gap: 20px; margin-top: 24px; flex-wrap: wrap; }
 .testimonial-nav { display: flex; gap: 10px; }
@@ -114,7 +118,7 @@
 @media (max-width: 599px) { .gallery-thumbnails { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 900px) {
  .client-detail-heading { grid-template-columns: 1fr; gap: 32px; }
- .hero-layout, .ai-story { grid-template-columns: 1fr; gap: 44px; }
+ .hero-layout, .ai-story, .testimonials-layout { grid-template-columns: 1fr; gap: 44px; }
  .client-hero h1 { font-size: clamp(26px, 6.8vw, 54px); }
  .hero-project { max-width: 640px; }
  .client-proof { flex-direction: column; align-items: flex-start; margin-top: 44px; }
