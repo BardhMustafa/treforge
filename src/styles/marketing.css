@@ -56,9 +56,19 @@
 .marketing-page .client-card p { font-size: 14px !important; line-height: 1.65 !important; }
 @media (max-width: 1023px) { .client-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 599px) { .client-grid { grid-template-columns: 1fr; } }
-.testimonial-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 18px; margin-top: 40px; align-items: start; }
-.testimonial-card { position: relative; display: flex; flex-direction: column; border: 1px solid #ffffff10; background: rgba(255,255,255,0.02); border-radius: 2px; padding: clamp(24px, 3vw, 34px); transition: border-color .3s, background .3s; }
-.testimonial-card:hover { border-color: rgba(0,255,180,0.3); background: rgba(255,255,255,0.035); }
+.testimonial-carousel { margin-top: 40px; max-width: 900px; }
+.testimonial-card { position: relative; display: flex; flex-direction: column; border: 1px solid #ffffff10; background: rgba(255,255,255,0.02); border-radius: 2px; padding: clamp(24px, 3vw, 40px); transition: border-color .3s, background .3s; }
+.testimonial-slide { min-height: 300px; justify-content: center; }
+.marketing-page .testimonial-slide blockquote { font-size: clamp(17px, 1.7vw, 20px); }
+.testimonial-controls { display: flex; align-items: center; gap: 20px; margin-top: 24px; flex-wrap: wrap; }
+.testimonial-nav { display: flex; gap: 10px; }
+.testimonial-nav button { width: 46px; height: 46px; border: 1px solid #ffffff30; border-radius: 4px; background: #0c131b; color: #e5ece9; font-size: 16px; cursor: pointer; transition: border-color .2s, color .2s; }
+.testimonial-nav button:hover { border-color: #00ffb4; color: #00ffb4; }
+.testimonial-dots { display: flex; gap: 10px; align-items: center; }
+.testimonial-dots button { width: 9px; height: 9px; padding: 0; border-radius: 50%; border: 1px solid #ffffff40; background: transparent; cursor: pointer; transition: all .25s; }
+.testimonial-dots button:hover { border-color: #00ffb4; }
+.testimonial-dots button.is-active { background: #00ffb4; border-color: #00ffb4; width: 24px; border-radius: 5px; }
+.testimonial-count { margin-left: auto; font-family: 'Space Mono', monospace; font-size: 12px; color: #aeb8c4; }
 .testimonial-quote-mark { font-family: 'Orbitron', sans-serif; font-size: 56px; line-height: .5; color: #00ffb4; opacity: .6; margin-bottom: 18px; }
 .marketing-page .testimonial-card blockquote { margin: 0; font-family: 'Space Grotesk', Arial, sans-serif; font-size: 16px; line-height: 1.75; color: #d4dde6; }
 .testimonial-card figcaption { margin-top: 26px; padding-top: 20px; border-top: 1px solid #ffffff14; display: flex; flex-direction: column; gap: 6px; }
