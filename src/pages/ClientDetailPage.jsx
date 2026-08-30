@@ -5,6 +5,7 @@ import { PAGE_PADDING_X, SECTION_PADDING_Y } from "../constants/layout";
 import { SectionLabel } from "../components/ui/SectionLabel";
 import { ClipBtn } from "../components/ui/ClipBtn";
 import { useIsMobile } from "../hooks";
+import { ClientLocation } from "../components/clients/ClientLocation";
 
 export function ClientDetailPage() {
   const { slug } = useParams();
@@ -26,7 +27,7 @@ export function ClientDetailPage() {
     );
   }
 
-  const { name, url, tag, summary, screenshot } = client;
+  const { name, url, tag, summary, screenshot, location, exportMarket } = client;
   const [imgError, setImgError] = useState(false);
   const showScreenshot = screenshot && !imgError;
 
@@ -91,6 +92,9 @@ export function ClientDetailPage() {
               }}
             >
               {tag}
+            </div>
+            <div style={{ marginTop: 20 }}>
+              <ClientLocation location={location} exportMarket={exportMarket} />
             </div>
           </div>
 

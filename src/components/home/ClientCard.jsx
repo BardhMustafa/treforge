@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useIsSmallScreen } from "../../hooks";
+import { ClientLocation } from "../clients/ClientLocation";
 
-export function ClientCard({ name, url, tag, slug, screenshot }) {
+export function ClientCard({ name, url, tag, slug, screenshot, location, exportMarket }) {
   const [hov, setHov] = useState(false);
   const [imgError, setImgError] = useState(false);
   const isSmall = useIsSmallScreen();
@@ -29,14 +30,16 @@ export function ClientCard({ name, url, tag, slug, screenshot }) {
       onMouseLeave={() => setHov(false)}
     >
       {showScreenshot && (
-        <div style={{ overflow: "hidden", background: "#000", position: "relative" }}>
+        <div style={{ overflow: "hidden", background: "#000", position: "relative", aspectRatio: "16/9" }}>
           <img
             src={screenshot}
             alt={`${name} website`}
             onError={() => setImgError(true)}
             style={{
               width: "100%",
-              height: "auto",
+              height: "100%",
+              objectFit: "cover",
+              objectPosition: "top",
               display: "block",
               transition: "transform 0.5s, opacity 0.5s",
               transform: hov ? "scale(1.05)" : "scale(1)",
@@ -118,6 +121,7 @@ export function ClientCard({ name, url, tag, slug, screenshot }) {
         >
           {name}
         </div>
+        <ClientLocation location={location} exportMarket={exportMarket} />
         <div
           style={{
             marginTop: "auto",
