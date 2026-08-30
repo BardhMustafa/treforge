@@ -56,6 +56,18 @@
 .marketing-page .client-card p { font-size: 14px !important; line-height: 1.65 !important; }
 @media (max-width: 1023px) { .client-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 599px) { .client-grid { grid-template-columns: 1fr; } }
+.testimonial-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 18px; margin-top: 40px; align-items: start; }
+.testimonial-card { position: relative; display: flex; flex-direction: column; border: 1px solid #ffffff10; background: rgba(255,255,255,0.02); border-radius: 2px; padding: clamp(24px, 3vw, 34px); transition: border-color .3s, background .3s; }
+.testimonial-card:hover { border-color: rgba(0,255,180,0.3); background: rgba(255,255,255,0.035); }
+.testimonial-quote-mark { font-family: 'Orbitron', sans-serif; font-size: 56px; line-height: .5; color: #00ffb4; opacity: .6; margin-bottom: 18px; }
+.marketing-page .testimonial-card blockquote { margin: 0; font-family: 'Space Grotesk', Arial, sans-serif; font-size: 16px; line-height: 1.75; color: #d4dde6; }
+.testimonial-card figcaption { margin-top: 26px; padding-top: 20px; border-top: 1px solid #ffffff14; display: flex; flex-direction: column; gap: 6px; }
+.testimonial-name { font-family: 'Orbitron', sans-serif; font-size: 15px; font-weight: 700; color: #fff; letter-spacing: .5px; }
+.testimonial-meta { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #00e6a3; }
+.client-testimonial { border: 1px solid #ffffff1a; background: rgba(0,255,180,0.03); border-radius: 4px; padding: clamp(28px, 4vw, 48px); margin: 0 0 64px; max-width: 900px; }
+.client-testimonial .testimonial-quote-mark { font-size: 64px; }
+.marketing-page .client-testimonial blockquote { margin: 0; font-family: 'Space Grotesk', Arial, sans-serif; font-size: clamp(18px, 2vw, 22px); line-height: 1.7; color: #e2e9f0; }
+.client-testimonial figcaption { margin-top: 28px; padding-top: 22px; border-top: 1px solid #ffffff14; display: flex; flex-direction: column; gap: 6px; }
 .story-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 32px; margin: 64px 0; }
 .story-grid article { border-top: 1px solid #ffffff25; padding-top: 24px; }
 .story-grid h2 { font-size: 22px; margin-bottom: 14px; }

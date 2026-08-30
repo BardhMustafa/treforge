@@ -14,6 +14,10 @@ export const CLIENTS = [
     summary:
       'Pronex is a real estate agency in Prizren, Kosova. We built its property website, an admin panel for managing properties, and AI Çmimi—a rules-based pricing-assistant prototype.',
     screenshot: '/clients/pronex.jpg',
+    testimonial: {
+      quote: 'Collaborating with Treforge started with a simple idea—a real estate platform—and grew through meetings and discussions about the real problems we saw in the market. We wanted a mixed platform where people can list their own properties while staying private, with the Pronex team handling the rest, alongside the deals we post with construction companies. More recently we introduced “AI Çmimi,” an AI assistant that helps evaluate a property’s price before it’s published.',
+      date: 'May 2026',
+    },
   },
   {
     slug: 'hm-home',
@@ -30,6 +34,9 @@ export const CLIENTS = [
     summary:
       'HM Home is a furniture shop in Prizren, Kosova. We built its e-commerce storefront and an admin panel for managing products and customer orders.',
     screenshot: '/clients/hm-home.jpg',
+    testimonial: {
+      quote: 'Selling furniture on social media was a mess. Contacting Treforge and having them deliver an e-commerce platform where we manage products and orders in no time was a real relief. Their dedication was on point—they took care of design, development, shipping it live, and keeping it running.',
+    },
   },
   {
     slug: 'lial-hc',
@@ -42,6 +49,9 @@ export const CLIENTS = [
     summary:
       'Lial HC is a door and window manufacturing company in Viti, Kosova, exporting to the EU. We built digital solutions to support their operations and reach.',
     screenshot: '/clients/lial-hc.jpg',
+    testimonial: {
+      quote: 'Exporting from our country to the European market needed a real online presence. Soon after we contacted Treforge we had a first prototype, and within days they delivered the final product that stepped up our presence.',
+    },
   },
   {
     slug: 'gazi',
@@ -54,6 +64,9 @@ export const CLIENTS = [
     summary:
       'Gazi is a window, glass, and door manufacturing company in Gjilan, Kosova, exporting to the EU. We built a scalable web platform and digital tools to support their operations.',
     screenshot: '/clients/gazi.jpg?v=20260830-3',
+    testimonial: {
+      quote: 'Treforge helped us step up our online presence and show our work and products to local and international clients. We came with a request and left the rest in their hands. Our journey started with mockups, grew into a real website, and won’t stop here.',
+    },
   },
   {
     slug: 'lilos-coffee',
@@ -62,6 +75,10 @@ export const CLIENTS = [
     location: 'Gjilan, Kosova',
     delivered: 'Coffee shop management: tables, orders, split bills, menus, and reports.',
     summary: 'A desktop management application for Lilo’s Coffee Shop in Gjilan, Kosova. Running on the shop’s computer, it brings table service, order-taking, menu management, and sales reporting into one workspace.',
+    testimonial: {
+      quote: 'Products, orders, waiters—thinking about all of this before opening the coffee shop sounded stressful. Before we started, I ran into the Treforge guys and they got it. They crafted the desktop application that runs on the shop’s computer and handles everything I mentioned, and it made my job as an owner much easier.',
+      attribution: 'Owner',
+    },
     screenshot: '/clients/lilos-coffee/03-order-taking-dark.webp',
     screenshotAlt: 'Lilo’s Coffee Shop desktop application in dark mode showing a table bill, staged order, and color-coded drinks menu.',
     galleryNote: 'The refreshed application interface in dark and light themes, shown with demonstration data. This project runs on the coffee shop’s computer; there is no public online demo.',

@@ -179,6 +179,22 @@ export function ClientDetailPage() {
           <article><h2>What we built</h2><ul>{client.story.scope.map(item => <li key={item}>{item}</li>)}</ul></article>
           <article><h2>How it fits together</h2><p>{client.story.workflow}</p></article>
         </div>}
+        {client.testimonial?.quote && (
+          <figure className="client-testimonial">
+            <span className="testimonial-quote-mark" aria-hidden="true">&ldquo;</span>
+            <blockquote>{client.testimonial.quote}</blockquote>
+            <figcaption>
+              <span className="testimonial-name">
+                {name}{client.testimonial.attribution ? ` · ${client.testimonial.attribution}` : ""}
+              </span>
+              {[tag, location, client.testimonial.date].filter(Boolean).length > 0 && (
+                <span className="testimonial-meta">
+                  {[tag, location, client.testimonial.date].filter(Boolean).join(" · ")}
+                </span>
+              )}
+            </figcaption>
+          </figure>
+        )}
         <div className="project-next"><div><h2>Something similar in mind?</h2><p>Tell us what your customers or team need to do.</p></div><Link className="text-action" to="/#contact">Discuss your project ↗</Link></div>
       </section>
     </main>

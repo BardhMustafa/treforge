@@ -2,6 +2,7 @@ import { Hero } from "../components/home/Hero";
 import { ServicesSection } from "../components/home/ServicesSection";
 import { AboutSection } from "../components/home/AboutSection";
 import { ClientsSection } from "../components/home/ClientsSection";
+import { TestimonialsSection } from "../components/home/TestimonialsSection";
 import { ContactSection } from "../components/home/ContactSection";
 import { LatestPostsSection } from "../components/home/LatestPostsSection";
 import { AIAgentsSpotlight } from "../components/home/AIAgentsSpotlight";
@@ -13,6 +14,7 @@ export function HomePage() {
       <Hero />
       <AIAgentsSpotlight />
       <ClientsSection />
+      <TestimonialsSection />
       <ServicesSection />
       <AboutSection />
       <LatestPostsSection />
