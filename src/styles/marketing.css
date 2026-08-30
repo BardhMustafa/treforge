@@ -25,7 +25,7 @@
 .hero-project { color: white; border: 1px solid #ffffff20; border-radius: 10px; overflow: hidden; background: #0d131b; display: block; transition: border-color .2s; }
 .hero-project:hover { border-color: #00ffb470; }
 .project-frame { padding: 20px 20px 0; background: #162026; }
-.project-frame img { display: block; width: 100%; aspect-ratio: 1.7; object-fit: cover; object-position: top; border-radius: 5px 5px 0 0; }
+.project-frame img { display: block; width: 100%; aspect-ratio: 1.93; object-fit: cover; object-position: top; border-radius: 5px 5px 0 0; }
 .hero-project-caption { padding: 28px; display: flex; align-items: center; justify-content: space-between; gap: 18px; }
 .hero-project-caption .eyebrow { margin-bottom: 12px; font-size: 9px; }
 .hero-project-caption h2 { font-size: clamp(16px, 1.4vw, 21px); line-height: 1.5; font-weight: 700; }
