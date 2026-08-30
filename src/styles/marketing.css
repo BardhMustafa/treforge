@@ -1,11 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap');
 
-/* Keep the public site consistent, including legacy inline styles and SVG labels. */
-.public-site, .public-site * { font-family: 'Poppins', Arial, sans-serif !important; }
+/* Keep the original display and label fonts; use a readable companion for body text. */
+.public-site { font-family: 'Space Grotesk', Arial, sans-serif; }
+.public-site p { font-family: 'Space Grotesk', Arial, sans-serif !important; }
 
-.marketing-page { font-family: 'Poppins', Arial, sans-serif; }
-.marketing-page p { font-family: 'Poppins', Arial, sans-serif !important; font-size: 16px !important; line-height: 1.75 !important; color: #aeb8c4 !important; }
-.marketing-page h1, .marketing-page h2, .marketing-page h3, .marketing-page h4 { font-family: 'Poppins', Arial, sans-serif !important; letter-spacing: -0.02em; }
+.marketing-page { font-family: 'Space Grotesk', Arial, sans-serif; }
+.marketing-page p { font-family: 'Space Grotesk', Arial, sans-serif !important; font-size: 16px !important; line-height: 1.75 !important; color: #aeb8c4 !important; }
+.marketing-page h1, .marketing-page h2, .marketing-page h3, .marketing-page h4 { font-family: 'Orbitron', sans-serif !important; letter-spacing: -0.02em; }
 .marketing-page a { text-decoration: none; }
 .marketing-page :focus-visible { outline: 2px solid #00ffb4; outline-offset: 6px; }
 .marketing-page section { scroll-margin-top: 90px; }
@@ -17,7 +18,7 @@
 .marketing-page .hero-intro { color: #e0e6ec !important; font-size: clamp(18px, 1.65vw, 23px) !important; line-height: 1.5 !important; max-width: 540px; }
 .hero-support { margin-top: 18px; max-width: 490px; }
 .action-row { display: flex; align-items: center; gap: 28px; flex-wrap: wrap; margin-top: 32px; }
-.primary-action { display: inline-flex; justify-content: center; align-items: center; gap: 24px; background: #00ffb4; color: #04120e; border: 0; border-radius: 4px; padding: 17px 22px; font: 600 14px 'Poppins', Arial, sans-serif; cursor: pointer; transition: background .2s; }
+.primary-action { display: inline-flex; justify-content: center; align-items: center; gap: 24px; background: #00ffb4; color: #04120e; border: 0; border-radius: 4px; padding: 17px 22px; font: 700 12px 'Space Mono', monospace; cursor: pointer; transition: background .2s; }
 .primary-action:hover { background: #adffe7; }
 .text-action { display: inline-flex; align-items: center; gap: 18px; color: #edf3f7; font-size: 14px; font-weight: 600; padding: 12px 0; border-bottom: 1px solid #52615f; }
 .text-action:hover { color: #00ffb4; }
@@ -29,7 +30,7 @@
 .hero-project-caption .eyebrow { margin-bottom: 12px; font-size: 9px; }
 .hero-project-caption h2 { font-size: clamp(16px, 1.4vw, 21px); line-height: 1.5; font-weight: 700; }
 .marketing-page .hero-project-caption p { font-size: 12px !important; margin-top: 12px; }
-.client-proof { border-top: 1px solid #ffffff18; border-bottom: 1px solid #ffffff18; margin-top: 72px; padding: 26px 0; display: flex; justify-content: space-between; align-items: center; gap: 24px; }
+.client-proof { border-top: 1px solid #ffffff18; border-bottom: 1px solid #ffffff18; margin-top: 72px; padding: 26px 0; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 24px; }
 .client-proof > span { color: #9aa8b6; font-size: 12px; }
 .client-proof > div { display: flex; gap: clamp(22px, 4vw, 64px); flex-wrap: wrap; }
 .client-proof a { color: #d2d9e0; font-size: 17px; font-weight: 600; }
@@ -66,7 +67,31 @@
 .service-deliverables li { border: 1px solid #ffffff20; padding: 24px; font-size: 16px; line-height: 1.6; color: #d7e2ea; background: #0b121b; }
 .project-next { padding: 32px 0; border-top: 1px solid #ffffff20; display: flex; justify-content: space-between; align-items: center; gap: 24px; flex-wrap: wrap; }
 .project-next h2 { font-size: 28px; margin-bottom: 12px; }
+.client-detail-heading { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .95fr); gap: 64px; align-items: end; margin-bottom: 64px; }
+.project-gallery { margin-bottom: 48px; }
+.gallery-heading, .gallery-caption, .gallery-controls { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
+.gallery-heading .eyebrow { margin-bottom: 10px; }
+.gallery-heading h2 { font-size: clamp(24px, 3vw, 36px); }
+.gallery-heading > span, .gallery-caption > span { font-size: 12px; color: #aeb8c4; }
+.marketing-page .gallery-note { font-size: 14px !important; margin: 20px 0 28px; max-width: 740px; }
+.gallery-stage { aspect-ratio: 9 / 5; display: grid; place-items: center; background: #0c131b; border: 1px solid #ffffff24; border-radius: 8px; overflow: hidden; }
+.gallery-stage img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.gallery-stage > p { padding: 24px; text-align: center; }
+.gallery-caption { padding: 20px 0; align-items: start; }
+.gallery-caption h3 { font-size: 18px; margin-bottom: 8px; }
+.marketing-page .gallery-caption p { font-size: 14px !important; }
+.gallery-controls { margin-bottom: 24px; }
+.gallery-controls > div { display: flex; gap: 10px; }
+.gallery-controls button { border: 1px solid #ffffff40; border-radius: 4px; padding: 12px 16px; min-height: 44px; color: #e5ece9; background: #0c131b; font: inherit; font-size: 13px; cursor: pointer; }
+.gallery-thumbnails { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.gallery-thumbnails button { min-width: 0; overflow: hidden; border: 1px solid #ffffff24; border-radius: 5px; background: #0c131b; color: #c7d1da; text-align: left; font: inherit; cursor: pointer; }
+.gallery-thumbnails button[aria-pressed="true"] { border-color: #00ffb4; color: #00ffb4; }
+.gallery-thumbnails img { display: block; width: 100%; height: auto; aspect-ratio: 9 / 5; object-fit: contain; }
+.gallery-thumbnails span { display: block; padding: 12px; font-size: 13px; }
+.gallery-controls button:hover, .gallery-thumbnails button:hover { border-color: #00ffb4; }
+@media (max-width: 599px) { .gallery-thumbnails { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 900px) {
+ .client-detail-heading { grid-template-columns: 1fr; gap: 32px; }
  .hero-layout, .ai-story { grid-template-columns: 1fr; gap: 44px; }
  .client-hero h1 { font-size: clamp(26px, 6.8vw, 54px); }
  .hero-project { max-width: 640px; }

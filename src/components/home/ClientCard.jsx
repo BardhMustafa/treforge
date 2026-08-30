@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { ClientLocation } from "../clients/ClientLocation";
 
-export function ClientCard({ name, tag, slug, screenshot, location, exportMarket, delivered }) {
+export function ClientCard({ name, tag, slug, screenshot, screenshotAlt, location, exportMarket, delivered, gallery }) {
   const [hov, setHov] = useState(false);
   const [imgError, setImgError] = useState(false);
   const showScreenshot = screenshot && !imgError;
@@ -32,7 +32,7 @@ export function ClientCard({ name, tag, slug, screenshot, location, exportMarket
         <div style={{ overflow: "hidden", background: "#000", position: "relative", aspectRatio: "16/9" }}>
           <img
             src={screenshot}
-            alt={`${name} website`}
+            alt={screenshotAlt || `${name} website`}
             onError={() => setImgError(true)}
             style={{
               width: "100%",
@@ -136,7 +136,7 @@ export function ClientCard({ name, tag, slug, screenshot, location, exportMarket
             gap: 8,
           }}
         >
-          View project <span style={{ transform: hov ? "translateX(4px)" : "none", transition: "transform 0.3s" }}>→</span>
+          {gallery?.length ? 'View gallery' : 'View project'} <span style={{ transform: hov ? "translateX(4px)" : "none", transition: "transform 0.3s" }}>→</span>
         </div>
       </div>
     </Link>

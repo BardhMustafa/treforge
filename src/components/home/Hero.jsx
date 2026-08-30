@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useBriefModal } from "../../context/BriefModalContext";
+import { CLIENTS } from "../../data/clients";
 
 export function Hero() {
   const { openBrief } = useBriefModal();
@@ -21,7 +22,7 @@ export function Hero() {
           <div className="hero-project-caption"><div><span className="eyebrow">Featured work · HM Home</span><h2>A storefront for customers.<br />A workspace for the team.</h2><p>E-commerce + product & order management</p></div><span aria-hidden="true">↗</span></div>
         </Link>
       </div>
-      <div className="client-proof"><span>Built with businesses in Kosova</span><div><a href="#clients">Pronex</a><a href="#clients">HM Home</a><a href="#clients">Lial HC</a><a href="#clients">Gazi</a></div></div>
+      <div className="client-proof"><span>Built with businesses in Kosova</span><div>{CLIENTS.map(client => <Link key={client.slug} to={`/clients/${client.slug}`}>{client.name}</Link>)}</div></div>
     </section>
   );
 }

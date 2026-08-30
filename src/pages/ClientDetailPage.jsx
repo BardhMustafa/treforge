@@ -6,6 +6,7 @@ import { SectionLabel } from "../components/ui/SectionLabel";
 import { ClipBtn } from "../components/ui/ClipBtn";
 import { useIsMobile } from "../hooks";
 import { ClientLocation } from "../components/clients/ClientLocation";
+import { ProjectGallery } from "../components/clients/ProjectGallery";
 
 export function ClientDetailPage() {
   const { slug } = useParams();
@@ -28,7 +29,8 @@ export function ClientDetailPage() {
     );
   }
 
-  const { name, url, tag, summary, screenshot, location, exportMarket } = client;
+  const { name, url, tag, summary, screenshot, location, exportMarket, gallery, galleryNote } = client;
+  const hasGallery = gallery?.length > 0;
   const showScreenshot = screenshot && failedScreenshot !== screenshot;
 
   return (
@@ -60,23 +62,17 @@ export function ClientDetailPage() {
           ← Back to selected work
         </Link>
 
-        <div style={{
-          display: "grid",
-          gridTemplateColumns: isMobile ? "1fr" : "1fr 400px",
-          gap: isMobile ? 32 : 80,
-          alignItems: "end",
-          marginBottom: 64,
-        }}>
+        <div className="client-detail-heading">
           <div>
             <SectionLabel>Client Case Study</SectionLabel>
             <h1
               style={{
                 fontFamily: "'Orbitron',monospace",
-                fontSize: "clamp(40px, 8vw, 84px)",
+                fontSize: "clamp(32px, 5vw, 64px)",
                 fontWeight: 900,
                 color: "#fff",
                 margin: "0 0 16px",
-                lineHeight: 1,
+                lineHeight: 1.15,
                 letterSpacing: -2,
               }}
             >
@@ -110,17 +106,18 @@ export function ClientDetailPage() {
             >
               {summary}
             </p>
-            <ClipBtn as="a" small
+            {url && <ClipBtn as="a" small
               href={url}
               target="_blank"
               rel="noopener noreferrer"
             >
               Visit Project ↗
-            </ClipBtn>
+            </ClipBtn>}
           </div>
         </div>
 
-        {showScreenshot && (
+        {hasGallery && <ProjectGallery key={slug} images={gallery} name={name} note={galleryNote} />}
+        {!hasGallery && showScreenshot && (
           <div
             style={{
               borderRadius: 12,
@@ -160,7 +157,7 @@ export function ClientDetailPage() {
           </div>
         )}
 
-        {!showScreenshot && screenshot && (
+        {!hasGallery && !showScreenshot && screenshot && (
           <div
             style={{
               aspectRatio: "16/10",

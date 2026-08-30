@@ -44,7 +44,7 @@ export function ProcessCard({ num, title, body }) {
         </div>
         <div
           style={{
-            fontFamily: "'Poppins',Arial,sans-serif",
+            fontFamily: "'Space Grotesk',Arial,sans-serif",
             fontSize: 15,
             color: "#aeb8c4",
             lineHeight: 1.75,

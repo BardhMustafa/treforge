@@ -41,7 +41,7 @@ export function ServiceCard({ service, active, onMouseEnter, onMouseLeave, isSma
           <p style={{ fontFamily: "'Space Mono',monospace", fontSize: 12, color: "rgba(255,255,255,0.48)", lineHeight: 1.85, margin: 0 }}>
             {desc}
           </p>
-          <div style={{ marginTop: "auto", paddingTop: 28, fontFamily: "'Poppins',Arial,sans-serif", fontSize: 13, color: "#00ffb4" }}>
+          <div style={{ marginTop: "auto", paddingTop: 28, fontFamily: "'Space Grotesk',Arial,sans-serif", fontSize: 13, color: "#00ffb4" }}>
             Explore service →
           </div>
         </div>

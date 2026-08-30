@@ -55,6 +55,30 @@ export const CLIENTS = [
       'Gazi is a window, glass, and door manufacturing company in Gjilan, Kosova, exporting to the EU. We built a scalable web platform and digital tools to support their operations.',
     screenshot: '/clients/gazi.jpg?v=20260830-3',
   },
+  {
+    slug: 'lilos-coffee',
+    name: "Lilo’s Coffee Shop",
+    tag: 'Desktop Application',
+    location: 'Gjilan, Kosova',
+    delivered: 'Coffee shop management: tables, orders, split bills, menus, and reports.',
+    summary: 'A desktop management application for Lilo’s Coffee Shop in Gjilan, Kosova. Running on the shop’s computer, it brings table service, order-taking, menu management, and sales reporting into one workspace.',
+    screenshot: '/clients/lilos-coffee/03-order-taking.webp',
+    screenshotAlt: 'Lilo’s Coffee Shop desktop application showing an open table bill, current order, and drinks menu.',
+    galleryNote: 'Application interface shown with demonstration data. This project runs on the coffee shop’s computer; there is no public online demo.',
+    gallery: [
+      { src: '/clients/lilos-coffee/03-order-taking.webp', title: 'Order-taking', alt: 'An open table bill, current order, and categorized drinks menu.', caption: 'Add drinks to an order while keeping the table’s running bill in view.' },
+      { src: '/clients/lilos-coffee/02-table-overview.webp', title: 'Table overview', alt: 'Coffee shop floor overview with available tables, occupied tables, and assigned-server bills.', caption: 'See available and occupied tables, with current bills and assigned tables at a glance.' },
+      { src: '/clients/lilos-coffee/04-split-bill.webp', title: 'Split bills', alt: 'Split-bill dialog showing selected drinks, quantities, and a partial-payment total.', caption: 'Select individual items and quantities to calculate a partial bill.' },
+      { src: '/clients/lilos-coffee/05-menu-management.webp', title: 'Menu management', alt: 'Cold drinks menu showing product names, prices, availability, and editing controls.', caption: 'Manage the drinks menu, prices, categories, and product availability.' },
+      { src: '/clients/lilos-coffee/06-sales-reports.webp', title: 'Sales reports', alt: 'Sales report with date and staff filters, sample open and paid bills, and a combined total.', caption: 'Review bills by date and staff member, including open and paid totals.' },
+      { src: '/clients/lilos-coffee/01-login.webp', title: 'Staff sign-in', alt: 'Lilo’s Coffee staff sign-in screen with a numeric PIN keypad.', caption: 'A dedicated PIN sign-in screen for staff using the shop’s computer.' },
+    ],
+    story: {
+      context: 'A coffee shop needs to keep table service, orders, and bills organized throughout the day. Lilo’s brings those daily tasks together in a desktop application on the shop’s computer.',
+      scope: ['Table overview and order-taking', 'Item-based split bills', 'Menu and availability management', 'Staff sign-in and sales reports'],
+      workflow: 'Staff sign in, select a table, and build an order from the drinks menu. The application keeps the current bill visible, supports splitting items, and provides reports for reviewing sales.',
+    },
+  },
 ];
 
 export const getClientBySlug = (slug) =>
