@@ -5,10 +5,11 @@ import { ClientsSection } from "../components/home/ClientsSection";
 import { ContactSection } from "../components/home/ContactSection";
 import { LatestPostsSection } from "../components/home/LatestPostsSection";
 import { AIAgentsSpotlight } from "../components/home/AIAgentsSpotlight";
+import { PAGE_PADDING_X } from "../constants/layout";
 
 export function HomePage() {
   return (
-    <main className="marketing-page" style={{ position: "relative", zIndex: 1 }}>
+    <main className="marketing-page" style={{ position: "relative", zIndex: 1, "--page-padding-x": PAGE_PADDING_X }}>
       <Hero />
       <AIAgentsSpotlight />
       <ClientsSection />
