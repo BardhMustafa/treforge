@@ -1,13 +1,26 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { PAGE_PADDING_X, SECTION_PADDING_Y } from "../../constants/layout";
 import { SectionLabel } from "../ui/SectionLabel";
 import { SectionTitle } from "../ui/SectionTitle";
 import { CLIENTS } from "../../data/clients";
 
 const REVIEWS = CLIENTS.filter((c) => c.testimonial?.quote);
+const AUTOPLAY_MS = 6000;
 
 export function TestimonialsSection() {
   const [active, setActive] = useState(0);
+  const [paused, setPaused] = useState(false);
+
+  useEffect(() => {
+    if (paused || REVIEWS.length <= 1) return;
+    const reduceMotion = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+    if (reduceMotion) return;
+    const id = setInterval(
+      () => setActive((index) => (index + 1) % REVIEWS.length),
+      AUTOPLAY_MS
+    );
+    return () => clearInterval(id);
+  }, [paused, active]);
 
   if (REVIEWS.length === 0) return null;
 
@@ -29,7 +42,15 @@ export function TestimonialsSection() {
         product that keeps running.
       </p>
 
-      <div className="testimonial-carousel">
+      <div
+        className="testimonial-carousel"
+        onMouseEnter={() => setPaused(true)}
+        onMouseLeave={() => setPaused(false)}
+        onFocusCapture={() => setPaused(true)}
+        onBlurCapture={(e) => {
+          if (!e.currentTarget.contains(e.relatedTarget)) setPaused(false);
+        }}
+      >
         <figure key={c.slug} className="testimonial-card testimonial-slide">
           <span className="testimonial-quote-mark" aria-hidden="true">
             &ldquo;
