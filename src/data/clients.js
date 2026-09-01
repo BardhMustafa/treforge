@@ -14,6 +14,7 @@ export const CLIENTS = [
     summary:
       'Pronex is a real estate agency in Prizren, Kosova. We built its property website, an admin panel for managing properties, and AI Çmimi—a rules-based pricing-assistant prototype.',
     screenshot: '/clients/pronex.jpg',
+    screenshotAlt: 'Pronex real estate homepage showing its property search and free-listing experience.',
     testimonial: {
       quote: 'Collaborating with Treforge started with a simple idea—a real estate platform—and grew through meetings and discussions about the real problems we saw in the market. We wanted a mixed platform where people can list their own properties while staying private, with the Pronex team handling the rest, alongside the deals we post with construction companies. More recently we introduced “AI Çmimi,” an AI assistant that helps evaluate a property’s price before it’s published.',
       date: 'May 2026',
@@ -97,6 +98,22 @@ export const CLIENTS = [
       context: 'A coffee shop needs to keep table service, orders, and bills organized throughout the day. Lilo’s brings those daily tasks together in a desktop application on the shop’s computer.',
       scope: ['Table overview and order-taking', 'Item-based split bills', 'Menu and availability management', 'Staff sign-in and sales reports'],
       workflow: 'Staff sign in, select a table, and build an order from the drinks menu. The application keeps the current bill visible, supports splitting items, and provides reports for reviewing sales.',
+    },
+  },
+  {
+    slug: 'danuts',
+    name: 'DaNuts',
+    url: 'https://danuts.it/',
+    tag: 'Agriculture',
+    location: 'Budrigë, Viti, Kosova',
+    delivered: 'An online presence for a hazelnut producer, its plantation, practices, and products.',
+    summary: 'DaNuts is a hazelnut producer from Budrigë, Viti, focused on careful cultivation and sustainable agricultural practices. We built a company website that presents the plantation, explains the journey from planting to harvest, and gives customers a clear way to enquire about seedlings, products, and collaboration.',
+    screenshot: '/clients/danuts.jpg',
+    screenshotAlt: 'DaNuts homepage with a close-up of harvested hazelnuts and the company’s cultivation message.',
+    story: {
+      context: 'DaNuts needed an online presence that could introduce the company, communicate its approach to hazelnut cultivation, and make its plantation visible beyond the local market.',
+      scope: ['Company and plantation presentation', 'Cultivation practices and plantation guide', 'Photography, gallery, and aerial plantation story', 'Contact path for seedlings, products, and collaboration'],
+      workflow: 'Visitors learn who DaNuts is, explore how the plantation is established and cared for, view the fields and harvest, and contact the company when they are ready to discuss seedlings, products, or a partnership.',
     },
   },
 ];
